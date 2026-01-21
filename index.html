@@ -5,34 +5,82 @@
   <title>App FJ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Icono para iPhone (Agregar a pantalla de inicio) -->
-  <!-- Usamos el nombre REAL que iOS creó -->
+  <!-- Icono iOS -->
   <link rel="apple-touch-icon" href="apple-touch-icon.png.jpg">
 
-  <!-- Para que se comporte como app -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+      background: #e0e0e0;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 30px 20px 10px;
+    }
+
+    header img {
+      width: 130px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      margin: 10px 0 5px;
+      font-size: 26px;
+      color: #333;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 0 30px 40px;
+    }
+
+    .neo-btn {
+      padding: 16px;
+      border-radius: 14px;
+      background: #e0e0e0;
+      box-shadow:
+        8px 8px 16px #bebebe,
+       -8px -8px 16px #ffffff;
+      color: #333;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .neo-btn:active {
+      box-shadow:
+        inset 6px 6px 12px #bebebe,
+        inset -6px -6px 12px #ffffff;
+      transform: scale(0.98);
+    }
+  </style>
 </head>
 
-<body style="
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-  margin-top: 40px;
-  background-color: #ffffff;
-">
+<body>
 
-  <!-- LOGO PRINCIPAL -->
-  <img
-    src="logo.png.jpg"
-    alt="Logo App FJ"
-    style="width:180px; margin-bottom:20px;"
-  >
+  <header>
+    <img src="apple-touch-icon.png.jpg" alt="Logo App FJ">
+    <h1>App FJ</h1>
+    <p>Panel principal</p>
+  </header>
 
-  <!-- TÍTULO -->
-  <h1>App FJ</h1>
-
-  <!-- DESCRIPCIÓN -->
-  <p>Mi primera app publicada en GitHub Pages 🚀</p>
+  <div class="buttons">
+    <a href="#" class="neo-btn">Inicio</a>
+    <a href="#" class="neo-btn">Servicios</a>
+    <a href="#" class="neo-btn">Proyectos</a>
+    <a href="#" class="neo-btn">Contacto</a>
+  </div>
 
 </body>
 </html>
