@@ -2,85 +2,181 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>App FJL</title>
+  <title>App FJ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Icono iOS -->
   <link rel="apple-touch-icon" href="apple-touch-icon.png.jpg">
 
   <style>
+    /* --------------------
+       BASE
+    -------------------- */
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-      background: #e0e0e0;
+      background: #ffffff;
+      color: #222;
       text-align: center;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    header {
-      padding: 30px 20px 10px;
+    /* --------------------
+       ESTADO INICIAL
+    -------------------- */
+    .intro {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.8s ease;
     }
 
-    header img {
-      width: 130px;
-      height: auto;
-      margin-bottom: 15px;
+    .logo {
+      width: 160px;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: scale(0.96);
+      animation: logoEnter 0.8s ease forwards,
+                 logoBreath 6s ease-in-out infinite;
+    }
+
+    @keyframes logoEnter {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Respiración elegante */
+    @keyframes logoBreath {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.015); }
     }
 
     h1 {
-      margin: 10px 0 5px;
+      margin: 10px 0 6px;
       font-size: 26px;
-      color: #333;
     }
 
     p {
       color: #666;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
+    /* --------------------
+       BOTONES (NEUMORFISMO BLANCO)
+    -------------------- */
     .buttons {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      padding: 0 30px 40px;
+      gap: 20px;
+      width: 100%;
+      max-width: 320px;
+      padding: 0 30px;
     }
 
     .neo-btn {
       padding: 16px;
-      border-radius: 14px;
-      background: #e0e0e0;
+      border-radius: 16px;
+      background: #ffffff;
       box-shadow:
-        8px 8px 16px #bebebe,
-       -8px -8px 16px #ffffff;
-      color: #333;
+        6px 6px 14px rgba(0,0,0,0.12),
+       -6px -6px 14px rgba(255,255,255,0.9);
       font-size: 18px;
       text-decoration: none;
+      color: #222;
+      cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .neo-btn:active {
       box-shadow:
-        inset 6px 6px 12px #bebebe,
-        inset -6px -6px 12px #ffffff;
-      transform: scale(0.98);
+        inset 4px 4px 10px rgba(0,0,0,0.15),
+        inset -4px -4px 10px rgba(255,255,255,0.9);
+      transform: scale(0.97);
+    }
+
+    /* --------------------
+       ESTADO POST-CLICK
+    -------------------- */
+    .app {
+      display: none;
+      padding: 20px;
+    }
+
+    .app header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .app header img {
+      width: 42px;
+      animation: none; /* deja de respirar */
+    }
+
+    .app header span {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .content {
+      text-align: left;
+      max-width: 500px;
+      margin: auto;
+      color: #444;
+      line-height: 1.6;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <img src="apple-touch-icon.png.jpg" alt="Logo App FJ">
-    <h1>App FJL</h1>
-    <p>Panel principal</p>
-  </header>
+  <!-- ====================
+       INTRO / LOGO PROTAGONISTA
+  ==================== -->
+  <section class="intro" id="intro">
+    <img src="apple-touch-icon.png.jpg" alt="Logo App FJ" class="logo">
+    <h1>App FJ</h1>
+    <p>Bienvenido</p>
 
-  <div class="buttons">
-    <a href="#" class="neo-btn">Inicio</a>
-    <a href="#" class="neo-btn">Servicios</a>
-    <a href="#" class="neo-btn">Proyectos</a>
-    <a href="#" class="neo-btn">Contacto</a>
-  </div>
+    <div class="buttons">
+      <div class="neo-btn" onclick="enterApp()">Inicio</div>
+      <div class="neo-btn" onclick="enterApp()">Servicios</div>
+      <div class="neo-btn" onclick="enterApp()">Proyectos</div>
+      <div class="neo-btn" onclick="enterApp()">Contacto</div>
+    </div>
+  </section>
+
+  <!-- ====================
+       APP / LOGO COMO MARCA
+  ==================== -->
+  <section class="app" id="app">
+    <header>
+      <img src="apple-touch-icon.png.jpg" alt="Marca App FJ">
+      <span>App FJ</span>
+    </header>
+
+    <div class="content">
+      <h2>Espacio interno</h2>
+      <p>
+        Aquí el logo deja de ser protagonista y actúa como marca.
+        El usuario ya decidió interactuar, y el sistema responde
+        con funcionalidad, no con presentación.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    function enterApp() {
+      document.getElementById('intro').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+    }
+  </script>
 
 </body>
 </html>
