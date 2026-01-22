@@ -9,9 +9,9 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png.jpg">
 
   <style>
-    /* ====================
+    /* =====================
        BASE
-    ==================== */
+    ===================== */
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
@@ -22,9 +22,9 @@
       overflow-x: hidden;
     }
 
-    /* ====================
+    /* =====================
        INTRO / LOGO PROTAGONISTA
-    ==================== */
+    ===================== */
     .intro {
       min-height: 100vh;
       display: flex;
@@ -34,19 +34,13 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .intro.hide {
-      opacity: 0;
-      transform: scale(0.98);
-      pointer-events: none;
-    }
-
     .logo {
       width: 160px;
       margin-bottom: 22px;
       opacity: 0;
       transform: scale(0.96);
       animation:
-        logoEnter 0.9s ease forwards,
+        logoEnter 0.8s ease forwards,
         logoBreath 6s ease-in-out infinite;
     }
 
@@ -60,30 +54,34 @@
     /* Respiración elegante */
     @keyframes logoBreath {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.018); }
+      50% { transform: scale(1.015); }
     }
 
-    h1 {
-      margin: 10px 0 4px;
-      font-size: 26px;
+    /* =====================
+       TEXTO DE MARCA
+    ===================== */
+    .system-name {
+      font-size: 22px;          /* MENOR que el logo */
       font-weight: 600;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.4px;
+      margin: 4px 0 6px;
     }
 
-    h1 sup {
+    .system-name sup {
       font-size: 12px;
+      vertical-align: super;
       margin-left: 2px;
     }
 
-    .subtitle {
-      color: #666;
+    .system-sub {
       font-size: 14px;
+      color: #666;
       margin-bottom: 42px;
     }
 
-    /* ====================
-       BOTONES (NEUMORFISMO BLANCO)
-    ==================== */
+    /* =====================
+       BOTONES NEUMÓRFICOS
+    ===================== */
     .buttons {
       display: flex;
       flex-direction: column;
@@ -101,31 +99,37 @@
         6px 6px 14px rgba(0,0,0,0.12),
        -6px -6px 14px rgba(255,255,255,0.9);
       font-size: 18px;
+      text-decoration: none;
       color: #222;
       cursor: pointer;
-      transition: all 0.25s ease;
-      user-select: none;
+      transition:
+        transform 0.18s cubic-bezier(.34,1.56,.64,1),
+        box-shadow 0.18s ease;
     }
 
     .neo-btn:active {
       box-shadow:
-        inset 4px 4px 10px rgba(0,0,0,0.15),
-        inset -4px -4px 10px rgba(255,255,255,0.9);
-      transform: scale(0.97);
+        inset 4px 4px 8px rgba(0,0,0,0.14),
+        inset -4px -4px 8px rgba(255,255,255,0.9);
+      transform: scale(0.965);
     }
 
-    /* ====================
-       APP / LOGO COMO MARCA
-    ==================== */
+    .neo-btn:focus-visible {
+      outline: none;
+    }
+
+    /* =====================
+       APP INTERNA
+    ===================== */
     .app {
       display: none;
-      padding: 24px;
-      animation: appFade 0.6s ease forwards;
+      padding: 20px;
+      animation: fadeIn 0.6s ease forwards;
     }
 
-    @keyframes appFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .app header {
@@ -141,9 +145,8 @@
     }
 
     .app header span {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 500;
-      letter-spacing: 0.3px;
     }
 
     .content {
@@ -158,14 +161,19 @@
 
 <body>
 
-  <!-- ====================
+  <!-- =====================
        INTRO
-  ==================== -->
+  ===================== -->
   <section class="intro" id="intro">
-    <img src="apple-touch-icon.png.jpg" alt="Logo System Innovatek" class="logo">
+    <img src="apple-touch-icon.png.jpg" alt="Logo SYSTEM INNOVATEK" class="logo">
 
-    <h1>SYSTEM INNOVATEK<sup>®</sup></h1>
-    <div class="subtitle">Sistema de Gestión Integral</div>
+    <div class="system-name">
+      SYSTEM INNOVATEK<sup>®</sup>
+    </div>
+
+    <div class="system-sub">
+      Sistema de Gestión Integral
+    </div>
 
     <div class="buttons">
       <div class="neo-btn" onclick="enterApp()">Inicio</div>
@@ -175,20 +183,20 @@
     </div>
   </section>
 
-  <!-- ====================
+  <!-- =====================
        APP
-  ==================== -->
+  ===================== -->
   <section class="app" id="app">
     <header>
-      <img src="apple-touch-icon.png.jpg" alt="Marca System Innovatek">
+      <img src="apple-touch-icon.png.jpg" alt="Marca SYSTEM INNOVATEK">
       <span>SYSTEM INNOVATEK</span>
     </header>
 
     <div class="content">
-      <h2>Espacio interno</h2>
+      <h2>Panel interno</h2>
       <p>
-        Indexación, control y ejecución avanzada de procesos
-        administrativos, jurídicos y operativos.
+        Indexar DATA = Ejecución avanzada de procesos administrativos,
+        técnicos y jurídicos dentro del sistema.
       </p>
     </div>
   </section>
@@ -198,12 +206,13 @@
       const intro = document.getElementById('intro');
       const app = document.getElementById('app');
 
-      intro.classList.add('hide');
+      intro.style.opacity = '0';
+      intro.style.transform = 'scale(0.98)';
 
       setTimeout(() => {
         intro.style.display = 'none';
         app.style.display = 'block';
-      }, 600);
+      }, 500);
     }
   </script>
 
