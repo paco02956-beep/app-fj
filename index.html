@@ -9,183 +9,163 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png.jpg">
 
   <style>
-    /* =====================
+    /* ====================
        BASE
-    ===================== */
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-      background: #ffffff;
-      color: #222;
-      text-align: center;
-      min-height: 100vh;
-      overflow-x: hidden;
+    ==================== */
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+      background:#ffffff;
+      color:#222;
+      min-height:100vh;
+      overflow-x:hidden;
+      text-align:center;
     }
 
-    /* =====================
-       INTRO / LOGO PROTAGONISTA
-    ===================== */
-    .intro {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    /* ====================
+       INTRO
+    ==================== */
+    .intro{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:32px;
     }
 
-    .logo {
-      width: 160px;
-      margin-bottom: 22px;
-      opacity: 0;
-      transform: scale(0.96);
+    /* LOGO PROTAGONISTA */
+    .logo{
+      width:150px;
+      margin-bottom:22px;
+      opacity:0;
+      transform:scale(.96);
       animation:
-        logoEnter 0.8s ease forwards,
+        logoEnter .8s ease forwards,
         logoBreath 6s ease-in-out infinite;
     }
 
-    @keyframes logoEnter {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    @keyframes logoEnter{
+      to{opacity:1;transform:scale(1);}
+    }
+    @keyframes logoBreath{
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.015);}
     }
 
-    /* Respiración elegante */
-    @keyframes logoBreath {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.015); }
+    /* ====================
+       JERARQUÍA DE TEXTO
+    ==================== */
+    .system-name{
+      font-size:20px;      /* menor que el logo */
+      font-weight:600;
+      letter-spacing:.6px;
+      margin:0;
+    }
+    .system-name sup{
+      font-size:11px;
+      vertical-align:super;
+    }
+    .system-desc{
+      font-size:14px;      /* 1–2 niveles menor */
+      color:#777;
+      margin:6px 0 36px;
     }
 
-    /* =====================
-       TEXTO DE MARCA
-    ===================== */
-    .system-name {
-      font-size: 22px;          /* MENOR que el logo */
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      margin: 4px 0 6px;
+    /* ====================
+       BOTONES GLASS (SPRING iOS)
+    ==================== */
+    .buttons{
+      width:100%;
+      max-width:320px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
     }
 
-    .system-name sup {
-      font-size: 12px;
-      vertical-align: super;
-      margin-left: 2px;
-    }
-
-    .system-sub {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 42px;
-    }
-
-    /* =====================
-       BOTONES NEUMÓRFICOS
-    ===================== */
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-      max-width: 320px;
-      padding: 0 30px;
-    }
-
-    .neo-btn {
-      padding: 16px;
-      border-radius: 16px;
-      background: #ffffff;
+    .glass-btn{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.65);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
       box-shadow:
-        6px 6px 14px rgba(0,0,0,0.12),
-       -6px -6px 14px rgba(255,255,255,0.9);
-      font-size: 18px;
-      text-decoration: none;
-      color: #222;
-      cursor: pointer;
+        0 10px 24px rgba(0,0,0,.10),
+        inset 0 0 0 1px rgba(255,255,255,.65);
+      font-size:17px;
+      color:#222;
+      cursor:pointer;
+      user-select:none;
       transition:
-        transform 0.18s cubic-bezier(.34,1.56,.64,1),
-        box-shadow 0.18s ease;
+        transform .18s cubic-bezier(.34,1.56,.64,1),
+        box-shadow .18s ease;
     }
 
-    .neo-btn:active {
+    /* Expansión táctil tipo iOS */
+    .glass-btn:active{
+      transform:scale(1.08);
       box-shadow:
-        inset 4px 4px 8px rgba(0,0,0,0.14),
-        inset -4px -4px 8px rgba(255,255,255,0.9);
-      transform: scale(0.965);
+        0 16px 34px rgba(0,0,0,.18),
+        inset 0 6px 12px rgba(0,0,0,.10);
     }
 
-    .neo-btn:focus-visible {
-      outline: none;
-    }
-
-    /* =====================
+    /* ====================
        APP INTERNA
-    ===================== */
-    .app {
-      display: none;
-      padding: 20px;
-      animation: fadeIn 0.6s ease forwards;
+    ==================== */
+    .app{
+      display:none;
+      padding:24px;
+      animation:fadeIn .4s ease;
+    }
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(6px);}
+      to{opacity:1;transform:translateY(0);}
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .app header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:28px;
+    }
+    .app header img{
+      width:38px; /* logo ya como marca */
+    }
+    .app header span{
+      font-size:16px;
+      font-weight:500;
     }
 
-    .app header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 30px;
-    }
-
-    .app header img {
-      width: 42px;
-      animation: none;
-    }
-
-    .app header span {
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    .content {
-      text-align: left;
-      max-width: 520px;
-      margin: auto;
-      color: #444;
-      line-height: 1.6;
+    .content{
+      max-width:520px;
+      margin:auto;
+      text-align:left;
+      line-height:1.6;
+      color:#444;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- =====================
-       INTRO
-  ===================== -->
+  <!-- INTRO / LOGO PROTAGONISTA -->
   <section class="intro" id="intro">
     <img src="apple-touch-icon.png.jpg" alt="Logo SYSTEM INNOVATEK" class="logo">
 
-    <div class="system-name">
+    <h1 class="system-name">
       SYSTEM INNOVATEK<sup>®</sup>
-    </div>
-
-    <div class="system-sub">
-      Sistema de Gestión Integral
-    </div>
+    </h1>
+    <div class="system-desc">Sistema de Gestión Integral</div>
 
     <div class="buttons">
-      <div class="neo-btn" onclick="enterApp()">Inicio</div>
-      <div class="neo-btn" onclick="enterApp()">Servicios</div>
-      <div class="neo-btn" onclick="enterApp()">Proyectos</div>
-      <div class="neo-btn" onclick="enterApp()">Contacto</div>
+      <div class="glass-btn" onclick="enterApp()">Inicio</div>
+      <div class="glass-btn" onclick="enterApp()">Servicios</div>
+      <div class="glass-btn" onclick="enterApp()">Proyectos</div>
+      <div class="glass-btn" onclick="enterApp()">Contacto</div>
     </div>
   </section>
 
-  <!-- =====================
-       APP
-  ===================== -->
+  <!-- APP / LOGO COMO MARCA -->
   <section class="app" id="app">
     <header>
       <img src="apple-touch-icon.png.jpg" alt="Marca SYSTEM INNOVATEK">
@@ -195,24 +175,16 @@
     <div class="content">
       <h2>Panel interno</h2>
       <p>
-        Indexar DATA = Ejecución avanzada de procesos administrativos,
-        técnicos y jurídicos dentro del sistema.
+        Espacio operativo del sistema.<br>
+        Arquitectura orientada a gestión, control y ejecución integral.
       </p>
     </div>
   </section>
 
   <script>
-    function enterApp() {
-      const intro = document.getElementById('intro');
-      const app = document.getElementById('app');
-
-      intro.style.opacity = '0';
-      intro.style.transform = 'scale(0.98)';
-
-      setTimeout(() => {
-        intro.style.display = 'none';
-        app.style.display = 'block';
-      }, 500);
+    function enterApp(){
+      document.getElementById('intro').style.display='none';
+      document.getElementById('app').style.display='block';
     }
   </script>
 
