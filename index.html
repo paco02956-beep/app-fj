@@ -2,16 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>App FJL</title>
+  <title>SYSTEM INNOVATEK</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Icono iOS -->
   <link rel="apple-touch-icon" href="apple-touch-icon.png.jpg">
 
   <style>
-    /* --------------------
+    /* ====================
        BASE
-    -------------------- */
+    ==================== */
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
@@ -22,25 +22,32 @@
       overflow-x: hidden;
     }
 
-    /* --------------------
-       ESTADO INICIAL
-    -------------------- */
+    /* ====================
+       INTRO / LOGO PROTAGONISTA
+    ==================== */
     .intro {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: all 0.8s ease;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .intro.hide {
+      opacity: 0;
+      transform: scale(0.98);
+      pointer-events: none;
     }
 
     .logo {
       width: 160px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       opacity: 0;
       transform: scale(0.96);
-      animation: logoEnter 0.8s ease forwards,
-                 logoBreath 6s ease-in-out infinite;
+      animation:
+        logoEnter 0.9s ease forwards,
+        logoBreath 6s ease-in-out infinite;
     }
 
     @keyframes logoEnter {
@@ -53,22 +60,30 @@
     /* Respiración elegante */
     @keyframes logoBreath {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.015); }
+      50% { transform: scale(1.018); }
     }
 
     h1 {
-      margin: 10px 0 6px;
+      margin: 10px 0 4px;
       font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
     }
 
-    p {
+    h1 sup {
+      font-size: 12px;
+      margin-left: 2px;
+    }
+
+    .subtitle {
       color: #666;
-      margin-bottom: 40px;
+      font-size: 14px;
+      margin-bottom: 42px;
     }
 
-    /* --------------------
+    /* ====================
        BOTONES (NEUMORFISMO BLANCO)
-    -------------------- */
+    ==================== */
     .buttons {
       display: flex;
       flex-direction: column;
@@ -86,10 +101,10 @@
         6px 6px 14px rgba(0,0,0,0.12),
        -6px -6px 14px rgba(255,255,255,0.9);
       font-size: 18px;
-      text-decoration: none;
       color: #222;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
+      user-select: none;
     }
 
     .neo-btn:active {
@@ -99,12 +114,18 @@
       transform: scale(0.97);
     }
 
-    /* --------------------
-       ESTADO POST-CLICK
-    -------------------- */
+    /* ====================
+       APP / LOGO COMO MARCA
+    ==================== */
     .app {
       display: none;
-      padding: 20px;
+      padding: 24px;
+      animation: appFade 0.6s ease forwards;
+    }
+
+    @keyframes appFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .app header {
@@ -116,17 +137,18 @@
 
     .app header img {
       width: 42px;
-      animation: none; /* deja de respirar */
+      animation: none;
     }
 
     .app header span {
       font-size: 18px;
       font-weight: 500;
+      letter-spacing: 0.3px;
     }
 
     .content {
       text-align: left;
-      max-width: 500px;
+      max-width: 520px;
       margin: auto;
       color: #444;
       line-height: 1.6;
@@ -137,12 +159,13 @@
 <body>
 
   <!-- ====================
-       INTRO / LOGO PROTAGONISTA
+       INTRO
   ==================== -->
   <section class="intro" id="intro">
-    <img src="apple-touch-icon.png.jpg" alt="Logo App FJ" class="logo">
-    <h1>App FJL</h1>
-    <p>Bienvenido</p>
+    <img src="apple-touch-icon.png.jpg" alt="Logo System Innovatek" class="logo">
+
+    <h1>SYSTEM INNOVATEK<sup>®</sup></h1>
+    <div class="subtitle">Sistema de Gestión Integral</div>
 
     <div class="buttons">
       <div class="neo-btn" onclick="enterApp()">Inicio</div>
@@ -153,27 +176,34 @@
   </section>
 
   <!-- ====================
-       APP / LOGO COMO MARCA
+       APP
   ==================== -->
   <section class="app" id="app">
     <header>
-      <img src="apple-touch-icon.png.jpg" alt="Marca App FJ">
-      <span>App FJL</span>
+      <img src="apple-touch-icon.png.jpg" alt="Marca System Innovatek">
+      <span>SYSTEM INNOVATEK</span>
     </header>
 
     <div class="content">
       <h2>Espacio interno</h2>
       <p>
-        Indexar DATA  = EJECUCION ADVA DE CUALQUER ACTO JURIDICO.
-        INNOVATEK SAPI DE CV
+        Indexación, control y ejecución avanzada de procesos
+        administrativos, jurídicos y operativos.
       </p>
     </div>
   </section>
 
   <script>
     function enterApp() {
-      document.getElementById('intro').style.display = 'none';
-      document.getElementById('app').style.display = 'block';
+      const intro = document.getElementById('intro');
+      const app = document.getElementById('app');
+
+      intro.classList.add('hide');
+
+      setTimeout(() => {
+        intro.style.display = 'none';
+        app.style.display = 'block';
+      }, 600);
     }
   </script>
 
