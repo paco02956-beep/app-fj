@@ -1,315 +1,278 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>SYSTEM INNOVATEK</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta charset="UTF-8" />
+  <title>SYSTEM INNOVATEK®</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- Icono iOS -->
-<link rel="apple-touch-icon" href="apple-touch-icon.png.jpg">
+  <!-- Icono iOS -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png.jpg" />
 
-<style>
-/* =========================
-   BASE
-========================= */
-* {
-  box-sizing: border-box;
-}
+  <style>
+    /* =====================
+       BASE
+    ===================== */
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #222;
+      min-height: 100vh;
+      overflow: hidden;
+    }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  background: #ffffff;
-  color: #222;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+    .view {
+      display: none;
+      min-height: 100vh;
+      padding: 30px 20px;
+      box-sizing: border-box;
+    }
 
-/* =========================
-   UTILIDADES
-========================= */
-.hidden {
-  display: none;
-}
+    .view.active {
+      display: block;
+    }
 
-.fade {
-  animation: fadeIn 0.5s ease forwards;
-}
+    /* =====================
+       LOGO / MARCA
+    ===================== */
+    .logo-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .logo-center img {
+      width: 140px;
+      margin-bottom: 16px;
+      animation: fadeScale 0.8s ease forwards, breathe 6s ease-in-out infinite;
+    }
 
-/* =========================
-   LOGO
-========================= */
-.logo-main {
-  width: 150px;
-  margin-bottom: 18px;
-  opacity: 0;
-  transform: scale(0.96);
-  animation:
-    logoEnter 0.8s ease forwards,
-    logoBreath 7s ease-in-out infinite;
-}
+    @keyframes fadeScale {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
-@keyframes logoEnter {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.015); }
+    }
 
-@keyframes logoBreath {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.012); }
-}
+    .brand-title {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
 
-.logo-mini {
-  width: 38px;
-}
+    .brand-sub {
+      font-size: 14px;
+      color: #666;
+      margin-top: 4px;
+    }
 
-/* =========================
-   TEXTOS
-========================= */
-.title-system {
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
+    /* =====================
+       NEUMORFISMO
+    ===================== */
+    .neo {
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow:
+        8px 8px 18px rgba(0,0,0,0.12),
+       -8px -8px 18px rgba(255,255,255,0.9);
+      transition: all 0.2s ease;
+    }
 
-.subtitle-system {
-  font-size: 14px;
-  color: #777;
-  margin-top: 4px;
-}
+    .neo:active {
+      box-shadow:
+        inset 6px 6px 14px rgba(0,0,0,0.15),
+        inset -6px -6px 14px rgba(255,255,255,0.9);
+      transform: scale(0.97);
+    }
 
-/* =========================
-   NEUMORFISMO
-========================= */
-.neo {
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow:
-    10px 10px 22px rgba(0,0,0,0.12),
-   -10px -10px 22px rgba(255,255,255,0.95);
-}
+    /* =====================
+       INPUTS LOGIN
+    ===================== */
+    input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: transparent;
+    }
 
-.neo:active {
-  box-shadow:
-    inset 6px 6px 14px rgba(0,0,0,0.14),
-    inset -6px -6px 14px rgba(255,255,255,0.9);
-  transform: scale(0.97);
-}
+    .input-box {
+      margin-bottom: 20px;
+    }
 
-/* =========================
-   BOTONES
-========================= */
-.button {
-  padding: 16px;
-  text-align: center;
-  font-size: 17px;
-  cursor: pointer;
-  transition: transform 0.18s ease;
-  user-select: none;
-}
+    /* =====================
+       BOTONES
+    ===================== */
+    .btn {
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 17px;
+      font-weight: 500;
+    }
 
-.button:active {
-  transform: scale(1.04);
-}
+    .btn + .btn {
+      margin-top: 18px;
+    }
 
-/* =========================
-   INPUTS LOGIN
-========================= */
-.input {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  border-radius: 14px;
-  border: none;
-  outline: none;
-  background: #f3f3f3;
-  margin-bottom: 14px;
-}
+    /* =====================
+       HEADER INTERNO
+    ===================== */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
 
-/* =========================
-   CONTENEDORES
-========================= */
-.center {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-}
+    .header img {
+      width: 36px;
+    }
 
-.stack {
-  width: 100%;
-  max-width: 340px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
+    .header span {
+      font-size: 16px;
+      font-weight: 600;
+    }
 
-/* =========================
-   HEADER INTERNO
-========================= */
-.header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 20px;
-}
+    .back {
+      margin-top: 30px;
+      width: fit-content;
+      padding: 12px 18px;
+      font-size: 15px;
+    }
 
-.back {
-  margin: 20px;
-  display: inline-block;
-  padding: 12px 18px;
-  font-size: 15px;
-  cursor: pointer;
-}
+    /* =====================
+       GRIDS
+    ===================== */
+    .menu-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-/* =========================
-   TARJETAS
-========================= */
-.card {
-  padding: 22px;
-  margin: 20px;
-}
-</style>
+    .card {
+      padding: 20px;
+      border-radius: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #555;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- =========================
-   LOGIN
-========================= -->
-<section id="login" class="center fade">
-  <img src="apple-touch-icon.png.jpg" class="logo-main" alt="Logo">
-  <div class="title-system">SYSTEM INNOVATEK®</div>
-  <div class="subtitle-system">Sistema de Gestión Integral</div>
+<!-- =====================
+     LOGIN
+===================== -->
+<section class="view active" id="login">
+  <div class="logo-center">
+    <img src="apple-touch-icon.png.jpg" alt="SYSTEM INNOVATEK" />
+    <div class="brand-title">SYSTEM INNOVATEK®</div>
+    <div class="brand-sub">Sistema de Gestión Integral</div>
+  </div>
 
-  <div class="stack" style="margin-top:40px">
-    <input id="user" class="input" placeholder="Username">
-    <input id="pass" class="input" type="password" placeholder="Password">
-    <div class="neo button" onclick="login()">Login</div>
+  <div class="input-box neo">
+    <input id="user" placeholder="Username" />
+  </div>
+
+  <div class="input-box neo">
+    <input id="pass" type="password" placeholder="Password" />
+  </div>
+
+  <div class="neo btn" onclick="login()">Login</div>
+</section>
+
+<!-- =====================
+     HOME
+===================== -->
+<section class="view" id="home">
+  <div class="header">
+    <img src="apple-touch-icon.png.jpg" />
+    <span>SYSTEM INNOVATEK</span>
+  </div>
+
+  <div class="menu-grid">
+    <div class="neo btn" onclick="openView('cliente')">CLIENTE</div>
+    <div class="neo btn" onclick="openView('proveedor')">PROVEEDOR</div>
+    <div class="neo btn" onclick="openView('trabajador')">TRABAJADOR</div>
+    <div class="neo btn" onclick="openView('operaciones')">OPERACIONES</div>
+    <div class="neo btn" onclick="openView('facturacion')">FACTURACIÓN</div>
+    <div class="neo btn" onclick="openView('reporte')">REPORTE GENERAL AJUSTADO</div>
   </div>
 </section>
 
-<!-- =========================
-   HOME
-========================= -->
-<section id="home" class="hidden fade">
+<!-- =====================
+     REPORTE GENERAL
+===================== -->
+<section class="view" id="reporte">
   <div class="header">
-    <img src="apple-touch-icon.png.jpg" class="logo-mini">
-    <div>
-      <div class="title-system">SYSTEM INNOVATEK®</div>
-      <div class="subtitle-system">Sistema de Gestión Integral</div>
+    <img src="apple-touch-icon.png.jpg" />
+    <span>Reporte General Ajustado</span>
+  </div>
+
+  <div class="menu-grid">
+    <div class="neo card">
+      <h3>Facturación Total</h3>
+      <div class="btn neo">Desglose por Cliente</div>
+    </div>
+
+    <div class="neo card">
+      <h3>Gastos Proveedores</h3>
+      <div class="btn neo">Desglose por Proveedor</div>
+    </div>
+
+    <div class="neo card">
+      <h3>Sueldos Totales</h3>
+      <div class="btn neo">Desglose por Trabajador</div>
     </div>
   </div>
 
-  <div class="stack" style="padding:30px">
-    <div class="neo button" onclick="go('inicio')">Inicio</div>
-    <div class="neo button" onclick="go('servicios')">Servicios</div>
-    <div class="neo button" onclick="go('proyectos')">Proyectos</div>
-    <div class="neo button" onclick="go('contacto')">Contacto</div>
-  </div>
-</section>
-
-<!-- =========================
-   PANEL
-========================= -->
-<section id="panel" class="hidden fade">
-  <div class="header">
-    <img src="apple-touch-icon.png.jpg" class="logo-mini">
-    <div class="title-system">SYSTEM INNOVATEK</div>
-  </div>
-
-  <div class="neo card">
-    <h2 id="panelTitle">Panel</h2>
-    <p id="panelText"></p>
-  </div>
-
-  <div class="neo back" onclick="back()">← Volver</div>
+  <div class="neo btn back" onclick="goBack()">← Volver</div>
 </section>
 
 <script>
-/* =========================
-   HÁPTICO
-========================= */
-function haptic() {
-  if (navigator.vibrate) navigator.vibrate(12);
-}
+  const stack = [];
 
-/* =========================
-   LOGIN
-========================= */
-function login() {
-  haptic();
-  const u = document.getElementById('user').value;
-  const p = document.getElementById('pass').value;
-
-  if (u === 'Administracion' && p === 'cc-132-iNgreso-kkccdd09') {
-    history.pushState({view:'home'}, '');
-    show('home');
-  } else {
-    alert('Credenciales incorrectas');
+  function showView(id) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
   }
-}
 
-/* =========================
-   NAVEGACIÓN
-========================= */
-function show(id) {
-  document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-}
+  function login() {
+    const u = document.getElementById('user').value;
+    const p = document.getElementById('pass').value;
 
-function go(view) {
-  haptic();
-  history.pushState({view:'panel'}, '');
-  show('panel');
-
-  const title = document.getElementById('panelTitle');
-  const text  = document.getElementById('panelText');
-
-  if (view === 'inicio') {
-    title.textContent = 'Inicio';
-    text.textContent = 'Panel interno del sistema. Arquitectura lista para módulos reales.';
+    if (u === "Administracion" && p === "cc-132-iNgreso-kkccdd09") {
+      stack.push('login');
+      showView('home');
+    } else {
+      alert("Credenciales incorrectas");
+    }
   }
-  if (view === 'servicios') {
-    title.textContent = 'Servicios';
-    text.textContent = 'Estructura preparada para gestión de servicios.';
-  }
-  if (view === 'proyectos') {
-    title.textContent = 'Proyectos';
-    text.textContent = 'Gestión de proyectos, control y ejecución.';
-  }
-  if (view === 'contacto') {
-    title.textContent = 'Contacto';
-    text.textContent = 'Canales institucionales del sistema.';
-  }
-}
 
-function back() {
-  haptic();
-  history.back();
-}
-
-/* =========================
-   HISTORIAL
-========================= */
-window.onpopstate = function(e) {
-  if (!e.state) {
-    show('login');
-  } else {
-    show(e.state.view);
+  function openView(id) {
+    const current = document.querySelector('.view.active').id;
+    stack.push(current);
+    showView(id);
   }
-};
+
+  function goBack() {
+    const prev = stack.pop();
+    if (prev) showView(prev);
+  }
 </script>
 
 </body>
