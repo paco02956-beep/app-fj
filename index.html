@@ -1,210 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>SYSTEM INNOVATEK®</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYSTEM INNOVATEK</title>
 
-  <!-- Icono iOS -->
-  <link rel="apple-touch-icon" href="apple-touch-icon.png.jpg" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+body { background: #fff; color: #111; }
 
-  <style>
-    /* =====================
-       BASE
-    ===================== */
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: #ffffff;
-      color: #222;
-      min-height: 100vh;
-      overflow: hidden;
-    }
+.view {
+  display: none;
+  min-height: 100vh;
+  padding: 24px;
+}
+.view.active { display: block; }
 
-    .view {
-      display: none;
-      min-height: 100vh;
-      padding: 30px 20px;
-      box-sizing: border-box;
-    }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.logo img { width: 42px; }
+.logo span { font-weight: 600; letter-spacing: .5px; }
 
-    .view.active {
-      display: block;
-    }
+.center {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
 
-    /* =====================
-       LOGO / MARCA
-    ===================== */
-    .logo-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 40px;
-    }
+.neo {
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px;
+  text-align: center;
+  box-shadow:
+    8px 8px 16px rgba(0,0,0,0.08),
+   -8px -8px 16px rgba(255,255,255,0.9);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
 
-    .logo-center img {
-      width: 140px;
-      margin-bottom: 16px;
-      animation: fadeScale 0.8s ease forwards, breathe 6s ease-in-out infinite;
-    }
+.neo:active {
+  transform: scale(.97);
+  box-shadow:
+    inset 6px 6px 12px rgba(0,0,0,0.08),
+    inset -6px -6px 12px rgba(255,255,255,0.9);
+}
 
-    @keyframes fadeScale {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
-    }
+.btn { cursor: pointer; }
 
-    @keyframes breathe {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.015); }
-    }
+input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
 
-    .brand-title {
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
+input.neo {
+  text-align: left;
+  padding-left: 20px;
+}
 
-    .brand-sub {
-      font-size: 14px;
-      color: #666;
-      margin-top: 4px;
-    }
+.back {
+  margin-top: 40px;
+  width: fit-content;
+  padding: 14px 22px;
+}
 
-    /* =====================
-       NEUMORFISMO
-    ===================== */
-    .neo {
-      background: #fff;
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow:
-        8px 8px 18px rgba(0,0,0,0.12),
-       -8px -8px 18px rgba(255,255,255,0.9);
-      transition: all 0.2s ease;
-    }
+.module-box {
+  margin-top: 40px;
+  font-size: 15px;
+  color: #555;
+}
 
-    .neo:active {
-      box-shadow:
-        inset 6px 6px 14px rgba(0,0,0,0.15),
-        inset -6px -6px 14px rgba(255,255,255,0.9);
-      transform: scale(0.97);
-    }
+h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
 
-    /* =====================
-       INPUTS LOGIN
-    ===================== */
-    input {
-      width: 100%;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      background: transparent;
-    }
-
-    .input-box {
-      margin-bottom: 20px;
-    }
-
-    /* =====================
-       BOTONES
-    ===================== */
-    .btn {
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-      font-size: 17px;
-      font-weight: 500;
-    }
-
-    .btn + .btn {
-      margin-top: 18px;
-    }
-
-    /* =====================
-       HEADER INTERNO
-    ===================== */
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 30px;
-    }
-
-    .header img {
-      width: 36px;
-    }
-
-    .header span {
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .back {
-      margin-top: 30px;
-      width: fit-content;
-      padding: 12px 18px;
-      font-size: 15px;
-    }
-
-    /* =====================
-       GRIDS
-    ===================== */
-    .menu-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .card {
-      padding: 20px;
-      border-radius: 18px;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-    }
-
-    .card p {
-      margin: 0;
-      color: #555;
-      line-height: 1.5;
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-<!-- =====================
-     LOGIN
-===================== -->
+<!-- LOGIN -->
 <section class="view active" id="login">
-  <div class="logo-center">
-    <img src="apple-touch-icon.png.jpg" alt="SYSTEM INNOVATEK" />
-    <div class="brand-title">SYSTEM INNOVATEK®</div>
-    <div class="brand-sub">Sistema de Gestión Integral</div>
-  </div>
+  <div class="center">
+    <div class="logo">
+      <img src="apple-touch-icon.png.jpg">
+      <span>SYSTEM INNOVATEK</span>
+    </div>
 
-  <div class="input-box neo">
-    <input id="user" placeholder="Username" />
-  </div>
+    <input class="neo" id="user" placeholder="Administración">
+    <input class="neo" id="pass" type="password" placeholder="••••••••">
 
-  <div class="input-box neo">
-    <input id="pass" type="password" placeholder="Password" />
+    <div class="neo btn" onclick="login()">Login</div>
   </div>
-
-  <div class="neo btn" onclick="login()">Login</div>
 </section>
 
-<!-- =====================
-     HOME
-===================== -->
+<!-- HOME -->
 <section class="view" id="home">
-  <div class="header">
-    <img src="apple-touch-icon.png.jpg" />
+  <div class="logo">
+    <img src="apple-touch-icon.png.jpg">
     <span>SYSTEM INNOVATEK</span>
   </div>
 
-  <div class="menu-grid">
+  <div class="center">
     <div class="neo btn" onclick="openView('cliente')">CLIENTE</div>
     <div class="neo btn" onclick="openView('proveedor')">PROVEEDOR</div>
     <div class="neo btn" onclick="openView('trabajador')">TRABAJADOR</div>
@@ -214,65 +116,74 @@
   </div>
 </section>
 
-<!-- =====================
-     REPORTE GENERAL
-===================== -->
+<!-- MÓDULOS -->
+<section class="view" id="cliente">
+  <h2>Cliente</h2>
+  <div class="module-box">Conectividad con DATA</div>
+  <div class="neo btn back" onclick="goBack()">← Volver</div>
+</section>
+
+<section class="view" id="proveedor">
+  <h2>Proveedor</h2>
+  <div class="module-box">Conectividad con DATA</div>
+  <div class="neo btn back" onclick="goBack()">← Volver</div>
+</section>
+
+<section class="view" id="trabajador">
+  <h2>Trabajador</h2>
+  <div class="module-box">Conectividad con DATA</div>
+  <div class="neo btn back" onclick="goBack()">← Volver</div>
+</section>
+
+<section class="view" id="operaciones">
+  <h2>Operaciones</h2>
+  <div class="module-box">Conectividad con DATA</div>
+  <div class="neo btn back" onclick="goBack()">← Volver</div>
+</section>
+
+<section class="view" id="facturacion">
+  <h2>Facturación</h2>
+  <div class="module-box">Conectividad con DATA</div>
+  <div class="neo btn back" onclick="goBack()">← Volver</div>
+</section>
+
 <section class="view" id="reporte">
-  <div class="header">
-    <img src="apple-touch-icon.png.jpg" />
-    <span>Reporte General Ajustado</span>
+  <h2>Reporte General Ajustado</h2>
+  <div class="module-box">
+    Panel preparado para cálculos, desglose e indexación de información.
   </div>
-
-  <div class="menu-grid">
-    <div class="neo card">
-      <h3>Facturación Total</h3>
-      <div class="btn neo">Desglose por Cliente</div>
-    </div>
-
-    <div class="neo card">
-      <h3>Gastos Proveedores</h3>
-      <div class="btn neo">Desglose por Proveedor</div>
-    </div>
-
-    <div class="neo card">
-      <h3>Sueldos Totales</h3>
-      <div class="btn neo">Desglose por Trabajador</div>
-    </div>
-  </div>
-
   <div class="neo btn back" onclick="goBack()">← Volver</div>
 </section>
 
 <script>
-  const stack = [];
+const stack = [];
 
-  function showView(id) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
 
-  function login() {
-    const u = document.getElementById('user').value;
-    const p = document.getElementById('pass').value;
+function openView(id) {
+  vibrate();
+  const current = document.querySelector('.view.active').id;
+  stack.push(current);
+  showView(id);
+}
 
-    if (u === "Administracion" && p === "cc-132-iNgreso-kkccdd09") {
-      stack.push('login');
-      showView('home');
-    } else {
-      alert("Credenciales incorrectas");
-    }
-  }
+function goBack() {
+  vibrate();
+  const prev = stack.pop();
+  if (prev) showView(prev);
+}
 
-  function openView(id) {
-    const current = document.querySelector('.view.active').id;
-    stack.push(current);
-    showView(id);
-  }
+function login() {
+  vibrate();
+  showView('home');
+}
 
-  function goBack() {
-    const prev = stack.pop();
-    if (prev) showView(prev);
-  }
+function vibrate() {
+  if (navigator.vibrate) navigator.vibrate(20);
+}
 </script>
 
 </body>
