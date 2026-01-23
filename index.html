@@ -1,445 +1,316 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>SYSTEM INNOVATEK</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<title>SYSTEM INNOVATEK</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-  <!-- PWA básica (iOS “Agregar a inicio”) -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<!-- Icono iOS -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png.jpg">
 
-  <!-- Icono iOS (RESPETA TU NOMBRE REAL DE ARCHIVO) -->
-  <link rel="apple-touch-icon" href="apple-touch-icon.png.jpg" />
+<style>
+/* =========================
+   BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
 
-  <style>
-    :root{
-      --bg:#ffffff;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: #ffffff;
+  color: #222;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-      /* Neumorfismo blanco (más “tono” / profundidad) */
-      --shadow-dark: rgba(0,0,0,0.14);
-      --shadow-dark-2: rgba(0,0,0,0.10);
-      --shadow-light: rgba(255,255,255,0.95);
+/* =========================
+   UTILIDADES
+========================= */
+.hidden {
+  display: none;
+}
 
-      --text:#1f1f1f;
-      --muted:#6f6f6f;
+.fade {
+  animation: fadeIn 0.5s ease forwards;
+}
 
-      --radius:18px;
-      --maxw:360px;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
-    }
+/* =========================
+   LOGO
+========================= */
+.logo-main {
+  width: 150px;
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: scale(0.96);
+  animation:
+    logoEnter 0.8s ease forwards,
+    logoBreath 7s ease-in-out infinite;
+}
 
-    /* Contenedor base */
-    .wrap{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:28px 18px;
-    }
+@keyframes logoEnter {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
-    /* “Tarjeta” invisible (solo para ritmo) */
-    .stage{
-      width:100%;
-      max-width:var(--maxw);
-      text-align:center;
-    }
+@keyframes logoBreath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.012); }
+}
 
-    /* =========================
-       LOGO (protagonista)
-    ========================= */
-    .logo{
-      width:150px;
-      height:auto;
-      margin:0 auto 18px;
-      opacity:0;
-      transform: scale(0.96);
-      animation:
-        logoEnter 0.85s ease forwards,
-        logoBreath 6s ease-in-out infinite;
-      will-change: transform, opacity;
-    }
+.logo-mini {
+  width: 38px;
+}
 
-    @keyframes logoEnter{
-      to{ opacity:1; transform:scale(1); }
-    }
+/* =========================
+   TEXTOS
+========================= */
+.title-system {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
 
-    /* Respiración elegante (casi imperceptible) */
-    @keyframes logoBreath{
-      0%,100%{ transform:scale(1); }
-      50%{ transform:scale(1.015); }
-    }
+.subtitle-system {
+  font-size: 14px;
+  color: #777;
+  margin-top: 4px;
+}
 
-    /* =========================
-       Identidad textual
-    ========================= */
-    .brand{
-      margin-top:6px;
-      font-weight:600;
-      letter-spacing:0.9px;
-      font-size:20px; /* jerarquía media (menor que logo) */
-      line-height:1.15;
-    }
-    .brand sup{
-      font-size:11px;
-      vertical-align:super;
-      margin-left:2px;
-    }
-    .tagline{
-      margin-top:6px;
-      margin-bottom:26px;
-      font-size:14px; /* jerarquía menor */
-      color:var(--muted);
-    }
+/* =========================
+   NEUMORFISMO
+========================= */
+.neo {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow:
+    10px 10px 22px rgba(0,0,0,0.12),
+   -10px -10px 22px rgba(255,255,255,0.95);
+}
 
-    /* =========================
-       Botones neumórficos
-       + animación tipo teclado iOS
-    ========================= */
-    .menu{
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-      margin-top:10px;
-    }
+.neo:active {
+  box-shadow:
+    inset 6px 6px 14px rgba(0,0,0,0.14),
+    inset -6px -6px 14px rgba(255,255,255,0.9);
+  transform: scale(0.97);
+}
 
-    .btn{
-      background:var(--bg);
-      border-radius:var(--radius);
-      padding:16px 16px;
-      font-size:17px;
-      font-weight:500;
-      cursor:pointer;
-      user-select:none;
+/* =========================
+   BOTONES
+========================= */
+.button {
+  padding: 16px;
+  text-align: center;
+  font-size: 17px;
+  cursor: pointer;
+  transition: transform 0.18s ease;
+  user-select: none;
+}
 
-      /* Neumorfismo blanco con más profundidad */
-      box-shadow:
-        10px 10px 22px var(--shadow-dark),
-        -10px -10px 22px var(--shadow-light);
+.button:active {
+  transform: scale(1.04);
+}
 
-      /* “Spring” perceptivo */
-      transition:
-        transform 0.18s cubic-bezier(.34,1.56,.64,1),
-        box-shadow 0.18s ease,
-        filter 0.18s ease;
-      will-change: transform, box-shadow;
-    }
+/* =========================
+   INPUTS LOGIN
+========================= */
+.input {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  background: #f3f3f3;
+  margin-bottom: 14px;
+}
 
-    /* Expansión suave + compresión ligera + rebote perceptivo */
-    .btn:active{
-      transform: scale(1.07);
-      box-shadow:
-        inset 6px 6px 14px var(--shadow-dark-2),
-        inset -6px -6px 14px var(--shadow-light);
-      filter: saturate(1.02);
-    }
+/* =========================
+   CONTENEDORES
+========================= */
+.center {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
 
-    /* =========================
-       Navegación / vistas
-    ========================= */
-    .view{
-      display:none;
-      opacity:0;
-      transform: translateY(8px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-    .view.active{
-      display:block;
-    }
-    .view.show{
-      opacity:1;
-      transform: translateY(0);
-    }
+.stack {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
 
-    /* Header de “marca” (logo deja de ser protagonista) */
-    .topbar{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin:8px 0 18px;
-      justify-content:flex-start;
-    }
-    .mark{
-      width:40px;
-      height:auto;
-      animation:none !important; /* sin respiración como marca */
-      opacity:1;
-      transform:none;
-    }
-    .title{
-      text-align:left;
-      line-height:1.1;
-    }
-    .title .t1{
-      font-size:16px;
-      font-weight:600;
-      letter-spacing:0.4px;
-    }
-    .title .t2{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:2px;
-    }
+/* =========================
+   HEADER INTERNO
+========================= */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+}
 
-    /* Contenido */
-    .card{
-      text-align:left;
-      border-radius:20px;
-      padding:16px 16px;
-      background:var(--bg);
-      box-shadow:
-        10px 10px 22px var(--shadow-dark),
-        -10px -10px 22px var(--shadow-light);
-    }
-    .card h2{
-      margin:0 0 8px;
-      font-size:18px;
-    }
-    .card p{
-      margin:0;
-      color:#444;
-      line-height:1.55;
-      font-size:14.5px;
-    }
+.back {
+  margin: 20px;
+  display: inline-block;
+  padding: 12px 18px;
+  font-size: 15px;
+  cursor: pointer;
+}
 
-    /* Botón volver (neumórfico pequeño) */
-    .backRow{
-      display:flex;
-      justify-content:flex-start;
-      margin-top:14px;
-    }
-    .back{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:12px 14px;
-      border-radius:14px;
-      background:var(--bg);
-      box-shadow:
-        8px 8px 18px var(--shadow-dark),
-        -8px -8px 18px var(--shadow-light);
-      font-size:14px;
-      cursor:pointer;
-      user-select:none;
-      transition:
-        transform 0.18s cubic-bezier(.34,1.56,.64,1),
-        box-shadow 0.18s ease;
-    }
-    .back:active{
-      transform: scale(1.05);
-      box-shadow:
-        inset 5px 5px 12px var(--shadow-dark-2),
-        inset -5px -5px 12px var(--shadow-light);
-    }
-
-    /* “Volver” por botón físico/gesto en iOS (no visible, pero consistente) */
-    /* (historial simulado en JS con history.pushState) */
-  </style>
+/* =========================
+   TARJETAS
+========================= */
+.card {
+  padding: 22px;
+  margin: 20px;
+}
+</style>
 </head>
 
 <body>
-  <main class="wrap">
-    <div class="stage">
 
-      <!-- ========= HOME (intro) ========= -->
-      <section id="home" class="view active show">
-        <img class="logo" src="apple-touch-icon.png.jpg" alt="SYSTEM INNOVATEK Logo" />
+<!-- =========================
+   LOGIN
+========================= -->
+<section id="login" class="center fade">
+  <img src="apple-touch-icon.png.jpg" class="logo-main" alt="Logo">
+  <div class="title-system">SYSTEM INNOVATEK®</div>
+  <div class="subtitle-system">Sistema de Gestión Integral</div>
 
-        <div class="brand">SYSTEM INNOVATEK<sup>®</sup></div>
-        <div class="tagline">Sistema de Gestión Integral</div>
+  <div class="stack" style="margin-top:40px">
+    <input id="user" class="input" placeholder="Username">
+    <input id="pass" class="input" type="password" placeholder="Password">
+    <div class="neo button" onclick="login()">Login</div>
+  </div>
+</section>
 
-        <div class="menu">
-          <div class="btn" data-target="inicio">Inicio</div>
-          <div class="btn" data-target="servicios">Servicios</div>
-          <div class="btn" data-target="proyectos">Proyectos</div>
-          <div class="btn" data-target="contacto">Contacto</div>
-        </div>
-      </section>
-
-      <!-- ========= VISTAS INTERNAS ========= -->
-      <section id="inicio" class="view">
-        <div class="topbar">
-          <img class="mark" src="apple-touch-icon.png.jpg" alt="Marca" />
-          <div class="title">
-            <div class="t1">SYSTEM INNOVATEK</div>
-            <div class="t2">Sistema de Gestión Integral</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Inicio</h2>
-          <p>
-            Este espacio es el panel interno. Aquí el logo ya no es protagonista: firma el sistema.
-            Estructura lista para crecer a módulos reales (login, paneles, API, datos).
-          </p>
-        </div>
-
-        <div class="backRow">
-          <div class="back" data-back="1">← Volver</div>
-        </div>
-      </section>
-
-      <section id="servicios" class="view">
-        <div class="topbar">
-          <img class="mark" src="apple-touch-icon.png.jpg" alt="Marca" />
-          <div class="title">
-            <div class="t1">SYSTEM INNOVATEK</div>
-            <div class="t2">Sistema de Gestión Integral</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Servicios</h2>
-          <p>
-            Aquí se listarán módulos/servicios del sistema. Diseño sobrio, sin ruido, con intención.
-          </p>
-        </div>
-
-        <div class="backRow">
-          <div class="back" data-back="1">← Volver</div>
-        </div>
-      </section>
-
-      <section id="proyectos" class="view">
-        <div class="topbar">
-          <img class="mark" src="apple-touch-icon.png.jpg" alt="Marca" />
-          <div class="title">
-            <div class="t1">SYSTEM INNOVATEK</div>
-            <div class="t2">Sistema de Gestión Integral</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Proyectos</h2>
-          <p>
-            Contenedor para rutas, cronogramas, tareas o paneles. Fácil de enlazar al “sistema real”
-            mediante URL cuando esté publicado o accesible por IP/red.
-          </p>
-        </div>
-
-        <div class="backRow">
-          <div class="back" data-back="1">← Volver</div>
-        </div>
-      </section>
-
-      <section id="contacto" class="view">
-        <div class="topbar">
-          <img class="mark" src="apple-touch-icon.png.jpg" alt="Marca" />
-          <div class="title">
-            <div class="t1">SYSTEM INNOVATEK</div>
-            <div class="t2">Sistema de Gestión Integral</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Contacto</h2>
-          <p>
-            Espacio para datos de contacto, soporte o rutas de comunicación del sistema.
-          </p>
-        </div>
-
-        <div class="backRow">
-          <div class="back" data-back="1">← Volver</div>
-        </div>
-      </section>
-
+<!-- =========================
+   HOME
+========================= -->
+<section id="home" class="hidden fade">
+  <div class="header">
+    <img src="apple-touch-icon.png.jpg" class="logo-mini">
+    <div>
+      <div class="title-system">SYSTEM INNOVATEK®</div>
+      <div class="subtitle-system">Sistema de Gestión Integral</div>
     </div>
-  </main>
+  </div>
 
-  <script>
-    /**
-     * Feedback háptico (ligero, no invasivo)
-     * Nota: iOS Safari puede ignorarlo; Android suele respetarlo.
-     */
-    function haptic(ms = 12) {
-      try {
-        if (navigator.vibrate) navigator.vibrate(ms);
-      } catch (_) {}
-    }
+  <div class="stack" style="padding:30px">
+    <div class="neo button" onclick="go('inicio')">Inicio</div>
+    <div class="neo button" onclick="go('servicios')">Servicios</div>
+    <div class="neo button" onclick="go('proyectos')">Proyectos</div>
+    <div class="neo button" onclick="go('contacto')">Contacto</div>
+  </div>
+</section>
 
-    /**
-     * Navegación con historial simulado
-     * - Permite regresar (como Safari) incluso en “Agregar a inicio”
-     * - Usa history.pushState para que el botón atrás funcione.
-     */
-    const VIEWS = ["home", "inicio", "servicios", "proyectos", "contacto"];
+<!-- =========================
+   PANEL
+========================= -->
+<section id="panel" class="hidden fade">
+  <div class="header">
+    <img src="apple-touch-icon.png.jpg" class="logo-mini">
+    <div class="title-system">SYSTEM INNOVATEK</div>
+  </div>
 
-    function getView(id) {
-      return document.getElementById(id);
-    }
+  <div class="neo card">
+    <h2 id="panelTitle">Panel</h2>
+    <p id="panelText"></p>
+  </div>
 
-    function hideAll() {
-      VIEWS.forEach(v => {
-        const el = getView(v);
-        el.classList.remove("show");
-        el.classList.remove("active");
-        // display:none lo controla .active
-      });
-    }
+  <div class="neo back" onclick="back()">← Volver</div>
+</section>
 
-    function showView(id, push = true) {
-      if (!VIEWS.includes(id)) id = "home";
+<script>
+/* =========================
+   HÁPTICO
+========================= */
+function haptic() {
+  if (navigator.vibrate) navigator.vibrate(12);
+}
 
-      hideAll();
+/* =========================
+   LOGIN
+========================= */
+function login() {
+  haptic();
+  const u = document.getElementById('user').value;
+  const p = document.getElementById('pass').value;
 
-      const el = getView(id);
-      el.classList.add("active");
-      // forzar reflow para transición suave
-      requestAnimationFrame(() => el.classList.add("show"));
+  if (u === 'Administracion' && p === 'cc-132-iNgreso-kkccdd09') {
+    history.pushState({view:'home'}, '');
+    show('home');
+  } else {
+    alert('Credenciales incorrectas');
+  }
+}
 
-      if (push) {
-        const urlHash = (id === "home") ? "#home" : "#" + id;
-        history.pushState({ view: id }, "", urlHash);
-      }
-    }
+/* =========================
+   NAVEGACIÓN
+========================= */
+function show(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
 
-    // Click en botones del home
-    document.querySelectorAll(".btn[data-target]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        haptic(12);
-        const target = btn.getAttribute("data-target");
-        // deja respirar la animación del botón un instante antes de navegar
-        setTimeout(() => showView(target, true), 80);
-      });
-    });
+function go(view) {
+  haptic();
+  history.pushState({view:'panel'}, '');
+  show('panel');
 
-    // Botones “volver”
-    document.querySelectorAll(".back[data-back]").forEach(back => {
-      back.addEventListener("click", () => {
-        haptic(10);
-        history.back(); // coherente con Safari y con historial simulado
-      });
-    });
+  const title = document.getElementById('panelTitle');
+  const text  = document.getElementById('panelText');
 
-    // Manejo del botón atrás / gesto atrás
-    window.addEventListener("popstate", (e) => {
-      const view = (e.state && e.state.view) ? e.state.view : parseHashOrHome();
-      showView(view, false);
-    });
+  if (view === 'inicio') {
+    title.textContent = 'Inicio';
+    text.textContent = 'Panel interno del sistema. Arquitectura lista para módulos reales.';
+  }
+  if (view === 'servicios') {
+    title.textContent = 'Servicios';
+    text.textContent = 'Estructura preparada para gestión de servicios.';
+  }
+  if (view === 'proyectos') {
+    title.textContent = 'Proyectos';
+    text.textContent = 'Gestión de proyectos, control y ejecución.';
+  }
+  if (view === 'contacto') {
+    title.textContent = 'Contacto';
+    text.textContent = 'Canales institucionales del sistema.';
+  }
+}
 
-    function parseHashOrHome() {
-      const hash = (location.hash || "").replace("#", "").trim();
-      if (!hash || hash === "home") return "home";
-      if (VIEWS.includes(hash)) return hash;
-      return "home";
-    }
+function back() {
+  haptic();
+  history.back();
+}
 
-    // Inicializa estado de historial para que “atrás” funcione desde la primera vista
-    (function init() {
-      const initial = parseHashOrHome();
-      // Reemplaza estado base
-      history.replaceState({ view: initial }, "", initial === "home" ? "#home" : "#" + initial);
-      showView(initial, false);
-    })();
-  </script>
+/* =========================
+   HISTORIAL
+========================= */
+window.onpopstate = function(e) {
+  if (!e.state) {
+    show('login');
+  } else {
+    show(e.state.view);
+  }
+};
+</script>
+
 </body>
 </html>
