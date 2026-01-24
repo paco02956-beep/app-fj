@@ -6,24 +6,43 @@
 <title>SYSTEM INNOVATEK</title>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-body { background: #fff; color: #111; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: #fff;
+  color: #111;
+}
 
 .view {
   display: none;
   min-height: 100vh;
   padding: 24px;
 }
-.view.active { display: block; }
+
+.view.active {
+  display: block;
+}
 
 .logo {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
-.logo img { width: 42px; }
-.logo span { font-weight: 600; letter-spacing: .5px; }
+
+.logo img {
+  width: 40px;
+}
+
+.logo span {
+  font-weight: 600;
+  letter-spacing: .5px;
+}
 
 .center {
   display: flex;
@@ -49,17 +68,26 @@ body { background: #fff; color: #111; }
     inset -6px -6px 12px rgba(255,255,255,0.9);
 }
 
-.btn { cursor: pointer; }
-
-input {
-  border: none;
-  outline: none;
-  font-size: 16px;
+.btn {
+  cursor: pointer;
 }
 
 input.neo {
+  border: none;
+  outline: none;
+  font-size: 16px;
   text-align: left;
   padding-left: 20px;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.module-box {
+  margin-top: 20px;
+  color: #555;
 }
 
 .back {
@@ -68,17 +96,33 @@ input.neo {
   padding: 14px 22px;
 }
 
-.module-box {
-  margin-top: 40px;
-  font-size: 15px;
-  color: #555;
+/* Panel del Reporte */
+.panel {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow:
+    8px 8px 16px rgba(0,0,0,0.08),
+   -8px -8px 16px rgba(255,255,255,0.9);
 }
 
-h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
+.panel-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0;
 }
 
+.panel-row span {
+  font-weight: 500;
+}
+
+.small-btn {
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+}
 </style>
 </head>
 
@@ -92,8 +136,8 @@ h2 {
       <span>SYSTEM INNOVATEK</span>
     </div>
 
-    <input class="neo" id="user" placeholder="Administración">
-    <input class="neo" id="pass" type="password" placeholder="••••••••">
+    <input class="neo" placeholder="Administración">
+    <input class="neo" type="password" placeholder="••••••••">
 
     <div class="neo btn" onclick="login()">Login</div>
   </div>
@@ -116,7 +160,7 @@ h2 {
   </div>
 </section>
 
-<!-- MÓDULOS -->
+<!-- MÓDULOS SIMPLES -->
 <section class="view" id="cliente">
   <h2>Cliente</h2>
   <div class="module-box">Conectividad con DATA</div>
@@ -147,11 +191,47 @@ h2 {
   <div class="neo btn back" onclick="goBack()">← Volver</div>
 </section>
 
+<!-- REPORTE GENERAL AJUSTADO (RESTABLECIDO) -->
 <section class="view" id="reporte">
   <h2>Reporte General Ajustado</h2>
-  <div class="module-box">
+  <p style="margin-bottom:16px;color:#555;">
     Panel preparado para cálculos, desglose e indexación de información.
+  </p>
+
+  <div class="panel">
+    <div class="panel-row">
+      <span>Facturación Total</span>
+      <div class="neo btn small-btn">Desglose por Cliente</div>
+    </div>
+
+    <div class="panel-row">
+      <span>Gastos Proveedores</span>
+      <div class="neo btn small-btn">Desglose por Proveedor</div>
+    </div>
+
+    <div class="panel-row">
+      <span>Sueldos Totales</span>
+      <div class="neo btn small-btn">Desglose por Trabajador</div>
+    </div>
+
+    <hr style="margin:18px 0;opacity:.2">
+
+    <div class="panel-row">
+      <span>Cuotas Patronales</span>
+      <span>—</span>
+    </div>
+
+    <div class="panel-row">
+      <span>Retenciones ISR</span>
+      <span>—</span>
+    </div>
+
+    <div class="panel-row">
+      <span>ISN</span>
+      <span>—</span>
+    </div>
   </div>
+
   <div class="neo btn back" onclick="goBack()">← Volver</div>
 </section>
 
