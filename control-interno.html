@@ -151,13 +151,16 @@ h2 {
   </div>
 
   <div class="center">
-    <div class="neo btn" onclick="openView('cliente')">CLIENTE</div>
-    <div class="neo btn" onclick="openView('proveedor')">PROVEEDOR</div>
-    <div class="neo btn" onclick="openView('trabajador')">TRABAJADOR</div>
-    <div class="neo btn" onclick="openView('operaciones')">OPERACIONES</div>
-    <div class="neo btn" onclick="openView('facturacion')">FACTURACIÓN</div>
-    <div class="neo btn" onclick="openView('reporte')">REPORTE GENERAL AJUSTADO</div>
-  </div>
+  <div class="neo btn" onclick="openView('loading')">MARKETING</div>
+  <div class="neo btn" onclick="openView('loading')">LEGAL</div>
+  <div class="neo btn" onclick="openView('loading')">SEGURIDAD SOCIAL</div>
+  <div class="neo btn" onclick="openView('loading')">CONTROL ADMINISTRATIVO</div>
+  <div class="neo btn" onclick="openView('loading')">CLIENTE</div>
+  <div class="neo btn" onclick="openView('loading')">OPERACIONES</div>
+  <div class="neo btn" onclick="openView('loading')">DASHBOARD</div>
+  <div class="neo btn" onclick="openView('loading')">REPORTE GENERAL AJUSTADO</div>
+  <div class="neo btn" onclick="openView('loading')">FACTURACIÓN</div>
+</div>
 </section>
 
 <!-- MÓDULOS SIMPLES -->
@@ -235,6 +238,18 @@ h2 {
   <div class="neo btn back" onclick="goBack()">← Volver</div>
 </section>
 
+<section class="view" id="loading">
+  <h2>Sin conexión a servidor</h2>
+
+  <div class="module-box">
+    ⏳ Cargando información...
+  </div>
+
+  <div class="neo btn back" onclick="goBack()">← Volver</div>
+</section>
+
+
+  
 <script>
 const stack = [];
 
