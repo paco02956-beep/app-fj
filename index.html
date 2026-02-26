@@ -3,199 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SYSTEM INNOVATEK</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
 body{
-  background:#fff;
-  color:#111;
+    background:#fff;
+    color:#111;
 }
 
+/* CONTENEDOR GENERAL */
 .view{
-  display:none;
-  min-height:100vh;
-  padding:24px;
+    width:100%;
+    max-width:430px;
+    margin:auto;
+    padding:20px;
 }
 
-.view.active{display:block;}
+/* HEADER */
+.header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:20px;
+    margin-bottom:30px;
+}
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:28px;
+    width:50px;
 }
 
-.logo img{width:40px;}
-
-.center{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+.title{
+    font-size:34px;
+    font-weight:700;
 }
 
-.neo{
-  background:#fff;
-  border-radius:20px;
-  padding:18px;
-  text-align:center;
-  box-shadow:
-    8px 8px 16px rgba(0,0,0,0.08),
-   -8px -8px 16px rgba(255,255,255,0.9);
+/* BOTONES MENU */
+.menu-btn{
+    width:100%;
+    background:#f8f8f8;
+    border:none;
+    border-radius:26px;
+    padding:24px;
+    margin-bottom:20px;
+    font-size:36px;
+    font-weight:500;
+    letter-spacing:1px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    cursor:pointer;
 }
 
-.btn{cursor:pointer;}
-
-input.neo{
-  border:none;
-  outline:none;
-  text-align:left;
-  padding-left:20px;
+.menu-btn:active{
+    transform:scale(0.98);
 }
 
-.back{
-  margin-top:30px;
-  width:fit-content;
-}
-
-/* ---- MENSAJE SIN CONEXION ---- */
-
-.offline{
-  margin-top:25px;
-  padding:18px;
-  border-radius:18px;
-  background:#fff;
-  box-shadow:
-    inset 4px 4px 10px rgba(0,0,0,0.05),
-    inset -4px -4px 10px rgba(255,255,255,0.9);
-  text-align:center;
-  color:#555;
-  font-weight:600;
-}
-
-.loader{
-  margin:12px auto;
-  width:24px;
-  height:24px;
-  border:3px solid #ddd;
-  border-top:3px solid #111;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg);}
-}
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<section class="view active" id="login">
-  <div class="center">
-    <div class="logo">
-      <img src="apple-touch-icon.png.jpg">
-      <span>SYSTEM INNOVATEK</span>
+<div class="view">
+
+    <div class="header">
+        <img src="logo.png" class="logo">
+        <div class="title">SYSTEM INNOVATEK</div>
     </div>
 
-    <input id="user" class="neo" placeholder="Usuario">
-    <input id="pass" class="neo" type="password" placeholder="••••••">
+    <!-- MENU ORIGINAL -->
+    <button class="menu-btn">CLIENTE</button>
+    <button class="menu-btn">PROVEEDOR</button>
+    <button class="menu-btn">TRABAJADOR</button>
+    <button class="menu-btn">OPERACIONES</button>
+    <button class="menu-btn">FACTURACIÓN</button>
+    <button class="menu-btn">REPORTE GENERAL AJUSTADO</button>
 
-    <div class="neo btn" onclick="login()">Login</div>
-  </div>
-</section>
-
-<!-- HOME GENERAL -->
-<section class="view" id="home">
-  <h2>Panel Principal</h2>
-  <div class="center">
-    <div class="neo btn" onclick="openView('cliente')">CLIENTE</div>
-    <div class="neo btn" onclick="openView('ventas')">VENTAS</div>
-  </div>
-</section>
-
-<!-- CLIENTE -->
-<section class="view" id="cliente">
-  <h2>Panel Cliente</h2>
-
-  <div class="offline">
-    <div class="loader"></div>
-    Sin conexión a servidor
-  </div>
-
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<!-- VENTAS -->
-<section class="view" id="ventas">
-  <h2>Panel Ventas</h2>
-
-  <div class="offline">
-    <div class="loader"></div>
-    Sin conexión a servidor
-  </div>
-
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<script>
-const stack=[];
-
-function showView(id){
-  document.querySelectorAll('.view')
-    .forEach(v=>v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-function openView(id){
-  const current=document.querySelector('.view.active').id;
-  stack.push(current);
-  showView(id);
-}
-
-function goBack(){
-  const prev=stack.pop();
-  if(prev) showView(prev);
-}
-
-/* LOGIN MULTIUSUARIO */
-function login(){
-
-  const user=document.getElementById("user").value.toLowerCase();
-
-  const usuarios=[
-    "administracion",
-    "control-interno",
-    "cliente",
-    "ventas"
-  ];
-
-  if(!usuarios.includes(user)){
-    alert("Usuario no reconocido");
-    return;
-  }
-
-  if(user==="cliente"){
-    showView("cliente");
-    return;
-  }
-
-  if(user==="ventas"){
-    showView("ventas");
-    return;
-  }
-
-  showView("home");
-}
-</script>
+</div>
 
 </body>
 </html>
