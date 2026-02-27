@@ -291,14 +291,21 @@ function goBack() {
   const prev = stack.pop();
   if (prev) showView(prev);
 }
-
 function login() {
+
   vibrate();
-  showView('home');
+
+  const usuario =
+    document.querySelector("input").value
+    .toLowerCase()
+    .trim();
+
+  if (usuario === "control-interno") {
+      showView('home');
+  } else {
+      alert("Usuario no autorizado");
+  }
 }
 
-function vibrate() {
-  if (navigator.vibrate) navigator.vibrate(20);
-}
 </script>
 
