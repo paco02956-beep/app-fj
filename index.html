@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SYSTEM INNOVATEK</title>
+<title>SYSTEM INNOVATEK — ADMINISTRACIÓN</title>
 
 <style>
 * {
@@ -68,17 +68,7 @@ body {
     inset -6px -6px 12px rgba(255,255,255,0.9);
 }
 
-.btn {
-  cursor: pointer;
-}
-
-input.neo {
-  border: none;
-  outline: none;
-  font-size: 16px;
-  text-align: left;
-  padding-left: 20px;
-}
+.btn { cursor: pointer; }
 
 h2 {
   font-size: 22px;
@@ -114,9 +104,7 @@ h2 {
   margin: 14px 0;
 }
 
-.panel-row span {
-  font-weight: 500;
-}
+.panel-row span { font-weight: 500; }
 
 .small-btn {
   padding: 10px 14px;
@@ -124,7 +112,7 @@ h2 {
   font-size: 14px;
 }
 
-  @keyframes spin {
+@keyframes spin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
@@ -133,76 +121,30 @@ h2 {
 
 <body>
 
-<!-- LOGIN -->
-<section class="view active" id="login">
-  <div class="center">
-    <div class="logo">
-      <img src="apple-touch-icon.png.jpg">
-      <span>SYSTEM INNOVATEK</span>
-    </div>
-
-    <input class="neo" placeholder="Administración">
-    <input class="neo" type="password" placeholder="••••••••">
-
-    <div class="neo btn" onclick="login()">Login</div>
-  </div>
-</section>
-
-<!-- HOME -->
-<section class="view" id="home">
+<!-- HOME (ADMINISTRACIÓN) -->
+<section class="view active" id="home">
   <div class="logo">
-    <img src="apple-touch-icon.png.jpg">
-    <span>SYSTEM INNOVATEK</span>
+    <img src="apple-touch-icon.png.jpg" alt="logo">
+    <span>SYSTEM INNOVATEK — ADMINISTRACIÓN</span>
   </div>
 
   <div class="center">
     <div class="neo btn" onclick="openView('loading')">CLIENTE</div>
-<div class="neo btn" onclick="openView('loading')">PROVEEDOR</div>
-<div class="neo btn" onclick="openView('loading')">TRABAJADOR</div>
-<div class="neo btn" onclick="openView('loading')">OPERACIONES</div>
-<div class="neo btn" onclick="openView('loading')">FACTURACIÓN</div>
+    <div class="neo btn" onclick="openView('loading')">PROVEEDOR</div>
+    <div class="neo btn" onclick="openView('loading')">TRABAJADOR</div>
+    <div class="neo btn" onclick="openView('loading')">OPERACIONES</div>
+    <div class="neo btn" onclick="openView('loading')">FACTURACIÓN</div>
     <div class="neo btn" onclick="openView('reporte')">REPORTE GENERAL AJUSTADO</div>
+
+    <div class="neo btn" onclick="salir()">SALIR</div>
   </div>
 </section>
 
-<!-- MÓDULOS SIMPLES -->
-<section class="view" id="cliente">
-  <h2>Cliente</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<section class="view" id="proveedor">
-  <h2>Proveedor</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<section class="view" id="trabajador">
-  <h2>Trabajador</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<section class="view" id="operaciones">
-  <h2>Operaciones</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<section class="view" id="facturacion">
-  <h2>Facturación</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-  <!-- LOADING UNIVERSAL -->
+<!-- LOADING UNIVERSAL -->
 <section class="view" id="loading">
-
   <h2>Sin conexión a servidor</h2>
 
   <div class="module-box" style="margin-top:40px;">
-
     <div style="display:flex;align-items:center;gap:12px;">
       <span style="
         width:26px;
@@ -217,14 +159,12 @@ h2 {
         Cargando información...
       </span>
     </div>
-
   </div>
 
   <div class="neo btn back" onclick="goBack()">← Volver</div>
-
 </section>
 
-<!-- REPORTE GENERAL AJUSTADO (RESTABLECIDO) -->
+<!-- REPORTE GENERAL AJUSTADO -->
 <section class="view" id="reporte">
   <h2>Reporte General Ajustado</h2>
   <p style="margin-bottom:16px;color:#555;">
@@ -289,30 +229,11 @@ function goBack() {
   if (prev) showView(prev);
 }
 
-function login() {
-
-  vibrate();
-
-  const usuario = document.querySelector("input").value.toLowerCase().trim();
-
-  // ===== USUARIOS PERMITIDOS =====
-
-  if (usuario === "administrador") {
-      showView('home');
-  }
-  else if (usuario === "control-interno") {
-      window.location.href = "control-interno.html";
-  }
-  else if (usuario === "cliente") {
-      window.location.href = "cliente.html";
-  }
-  else if (usuario === "ventas") {
-      window.location.href = "ventas.html";
-  }
-  else {
-      alert("Usuario no autorizado");
-      return;
-  }
+function salir() {
+  // Si en el futuro guardas token/rol en localStorage, aquí lo limpias.
+  // localStorage.removeItem("token");
+  // localStorage.removeItem("rol");
+  window.location.href = "login.html";
 }
 
 function vibrate() {
@@ -320,3 +241,5 @@ function vibrate() {
 }
 </script>
 
+</body>
+</html>
