@@ -28,10 +28,6 @@ body{background:#fff;color:#111;}
 }
 .btn{cursor:pointer;}
 
-input.neo{
-  border:none;outline:none;font-size:16px;text-align:left;padding-left:20px;
-}
-
 h2{font-size:22px;margin-bottom:10px;}
 .module-box{margin-top:20px;color:#555;}
 .back{margin-top:40px;width:fit-content;padding:14px 22px;}
@@ -46,23 +42,8 @@ h2{font-size:22px;margin-bottom:10px;}
 
 <body>
 
-<!-- LOGIN -->
-<section class="view active" id="login">
-  <div class="center">
-    <div class="logo">
-      <img src="apple-touch-icon.png.jpg">
-      <span>SYSTEM INNOVATEK</span>
-    </div>
-
-    <input class="neo" id="usuario" placeholder="control-interno">
-    <input class="neo" type="password" placeholder="••••••••">
-
-    <div class="neo btn" onclick="login()">Login</div>
-  </div>
-</section>
-
-<!-- HOME -->
-<section class="view" id="home">
+<!-- HOME (ANTES LOGIN) -->
+<section class="view active" id="home">
   <div class="logo">
     <img src="apple-touch-icon.png.jpg">
     <span>SYSTEM INNOVATEK</span>
@@ -121,23 +102,9 @@ function goBack(){
   if (prev) showView(prev);
 }
 
-function login(){
-  vibrate();
-  const usuario = (document.getElementById("usuario").value || "").toLowerCase().trim();
-
-  if (usuario === "control-interno"){
-    showView("home");
-  } else {
-    alert("Usuario no autorizado");
-  }
-}
-
 function salir(){
   vibrate();
-  // si tienes login.html maestro, regresa ahí:
   window.location.href = "login.html";
-  // si no, puedes regresar a index.html:
-  // window.location.href = "index.html";
 }
 </script>
 
