@@ -2,26 +2,37 @@
 
 function login() {
 
-    const usuario = document.getElementById("usuario").value.trim().toUpperCase();
+    const usuario = document.getElementById("usuario").value.trim().toLowerCase();
 
-    // ===== USUARIOS PERMITIDOS =====
-    const rutas = {
-        "ADMINISTRACION": "/menu_admin.html",
-        "VENTAS": "/menu_ventas.html",
-        "CONTROL-INTERNO": "/menu_control.html",
-        "CLIENTE": "/menu_cliente.html"
-    };
+    // 🔐 usuarios permitidos
+    const usuariosPermitidos = [
+        "administracion",
+        "ventas",
+        "control-interno",
+        "cliente"
+    ];
 
-    if (rutas[usuario]) {
-
-        // guardar usuario solo visual
-        localStorage.setItem("usuario", usuario);
-
-        // redirigir menú correcto
-        window.location.href = rutas[usuario];
-
-    } else {
+    // 🚫 bloqueo visual
+    if (!usuariosPermitidos.includes(usuario)) {
         alert("Usuario no autorizado");
+        return;
+    }
+
+    // 🔀 redirecciones por módulo
+    if (usuario === "administracion") {
+        window.location.href = "menu_administracion.html";
+    }
+
+    if (usuario === "ventas") {
+        window.location.href = "ventas.html";
+    }
+
+    if (usuario === "control-interno") {
+        window.location.href = "control_interno.html";
+    }
+
+    if (usuario === "cliente") {
+        window.location.href = "cliente.html";
     }
 }
 
