@@ -123,6 +123,11 @@ h2 {
   border-radius: 14px;
   font-size: 14px;
 }
+
+  @keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
 </style>
 </head>
 
@@ -151,11 +156,11 @@ h2 {
   </div>
 
   <div class="center">
-    <div class="neo btn" onclick="openView('cliente')">CLIENTE</div>
-    <div class="neo btn" onclick="openView('proveedor')">PROVEEDOR</div>
-    <div class="neo btn" onclick="openView('trabajador')">TRABAJADOR</div>
-    <div class="neo btn" onclick="openView('operaciones')">OPERACIONES</div>
-    <div class="neo btn" onclick="openView('facturacion')">FACTURACIÓN</div>
+    <div class="neo btn" onclick="openView('loading')">CLIENTE</div>
+<div class="neo btn" onclick="openView('loading')">PROVEEDOR</div>
+<div class="neo btn" onclick="openView('loading')">TRABAJADOR</div>
+<div class="neo btn" onclick="openView('loading')">OPERACIONES</div>
+<div class="neo btn" onclick="openView('loading')">FACTURACIÓN</div>
     <div class="neo btn" onclick="openView('reporte')">REPORTE GENERAL AJUSTADO</div>
   </div>
 </section>
@@ -189,6 +194,34 @@ h2 {
   <h2>Facturación</h2>
   <div class="module-box">Conectividad con DATA</div>
   <div class="neo btn back" onclick="goBack()">← Volver</div>
+</section>
+
+  <!-- LOADING UNIVERSAL -->
+<section class="view" id="loading">
+
+  <h2>Sin conexión a servidor</h2>
+
+  <div class="module-box" style="margin-top:40px;">
+
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="
+        width:26px;
+        height:26px;
+        border:4px solid #ddd;
+        border-top:4px solid #111;
+        border-radius:50%;
+        animation: spin 1s linear infinite;
+      "></span>
+
+      <span style="font-size:30px;color:#555;">
+        Cargando información...
+      </span>
+    </div>
+
+  </div>
+
+  <div class="neo btn back" onclick="goBack()">← Volver</div>
+
 </section>
 
 <!-- REPORTE GENERAL AJUSTADO (RESTABLECIDO) -->
