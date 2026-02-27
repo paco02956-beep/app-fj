@@ -14,13 +14,18 @@
 }
 
 body{
-  background:#fff;
-  color:#111;
+  background:#f4f4f4;
+  color:#222;
 }
 
 .view{
+  display:none;
   min-height:100vh;
   padding:24px;
+}
+
+.view.active{
+  display:block;
 }
 
 .logo{
@@ -35,13 +40,13 @@ body{
 .center{
   display:flex;
   flex-direction:column;
-  gap:18px;
+  gap:16px;
 }
 
 .neo{
   background:#fff;
-  border-radius:20px;
-  padding:18px;
+  border-radius:18px;
+  padding:16px;
   text-align:center;
   box-shadow:
     8px 8px 16px rgba(0,0,0,.08),
@@ -50,101 +55,162 @@ body{
 
 .btn{ cursor:pointer; }
 
-.module-box{
-  margin-top:20px;
-  color:#555;
+.back{
+  margin-top:30px;
+  width:fit-content;
+}
+
+input.neo{
+  border:none;
+  outline:none;
+  text-align:left;
+  padding-left:14px;
 }
 
 .panel-row{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  margin:14px 0;
+  margin:10px 0;
 }
 
-.back{
-  margin-top:25px;
-  width:fit-content;
-  padding:14px 22px;
-}
-
-/* ===== SPINNER ===== */
+/* spinner */
 .spinner{
-  width:16px;
-  height:16px;
+  width:18px;
+  height:18px;
   border:3px solid #ccc;
   border-top:3px solid #111;
   border-radius:50%;
-  display:inline-block;
   animation:spin 1s linear infinite;
+  display:inline-block;
 }
 
 @keyframes spin{
-  0%{ transform:rotate(0deg); }
-  100%{ transform:rotate(360deg); }
-}
-
-button{
-  border:none;
-  padding:10px 16px;
-  border-radius:12px;
-  background:#fff;
-  box-shadow:
-    6px 6px 12px rgba(0,0,0,.08),
-   -6px -6px 12px rgba(255,255,255,.9);
+  to{ transform:rotate(360deg);}
 }
 </style>
 </head>
 
 <body>
 
-<section class="view">
+<!-- LOGIN -->
+<section class="view active" id="login">
+<div class="center">
+
+  <div class="logo">
+    <img src="apple-touch-icon.png.jpg">
+    <span>SYSTEM INNOVATEK — VENTAS</span>
+  </div>
+
+  <input class="neo" id="user" placeholder="Usuario">
+  <input class="neo" type="password" placeholder="••••••">
+
+  <div class="neo btn" onclick="login()">Login</div>
+
+</div>
+</section>
+
+<!-- MENU VENTAS -->
+<section class="view" id="menuVentas">
 
 <div class="logo">
   <img src="apple-touch-icon.png.jpg">
-  <span>SYSTEM INNOVATEK — VENTAS</span>
+  <span>PANEL VENTAS</span>
 </div>
 
-<div class="module-box">
+<div class="center">
 
-<h3>PANEL VENTAS</h3>
-<hr>
-
-<div class="panel-row"><span>Cliente</span><span>__________</span></div>
-<div class="panel-row"><span>Producto</span><span>__________</span></div>
-<div class="panel-row"><span>Cantidad</span><span>__________</span></div>
-<div class="panel-row"><span>Precio</span><span>__________</span></div>
-<div class="panel-row"><span>Total</span><span>__________</span></div>
-
-<hr>
-
-<div class="panel-row">
-  <span style="color:#0a58ff;">●</span>
-  <span>Sin conexión al servidor</span>
-</div>
-
-<div class="panel-row">
-  <span class="spinner"></span>
-  <span>Cargando información...</span>
-</div>
-
-<br>
-
-<div class="panel-row">
-  <button>Guardar</button>
-  <button>Modificar</button>
-</div>
-
-<div class="panel-row">
-  <button>Eliminar</button>
-  <button>Enviar</button>
-</div>
-
-<div class="neo btn back" onclick="history.back()">← Atrás</div>
+  <div class="neo btn" onclick="openView('se')">SE</div>
+  <div class="neo btn" onclick="openView('loading')">RU</div>
+  <div class="neo btn" onclick="openView('loading')">S/CF</div>
 
 </div>
+
+<div class="neo btn back" onclick="goBack()">← Atrás</div>
 
 </section>
+
+<!-- PLANTILLA SE -->
+<section class="view" id="se">
+
+<div class="logo">
+  <img src="apple-touch-icon.png.jpg">
+  <span>Marketing – Cotización</span>
+</div>
+
+<div class="neo">
+
+<div class="panel-row"><span>Razón Social</span><span>________</span></div>
+<div class="panel-row"><span>Folio</span><span>________</span></div>
+<div class="panel-row"><span>No. Cotizantes</span><span>________</span></div>
+<div class="panel-row"><span>Salario Medio</span><span>________</span></div>
+<div class="panel-row"><span>Periodo</span><span>________</span></div>
+<div class="panel-row"><span>Mes</span><span>________</span></div>
+<div class="panel-row"><span>UMA</span><span>________</span></div>
+<div class="panel-row"><span>UMI</span><span>________</span></div>
+<div class="panel-row"><span>Prima Riesgo</span><span>________</span></div>
+
+<hr style="margin:16px 0">
+
+<div class="panel-row"><span>COS</span><span>-</span></div>
+<div class="panel-row"><span>NOM</span><span>-</span></div>
+<div class="panel-row"><span>TOTAL</span><span>-</span></div>
+
+</div>
+
+<div class="center" style="margin-top:20px;">
+  <div class="neo btn">Resumen</div>
+  <div class="neo btn">Generar cotización</div>
+  <div class="neo btn">Guardar cotización</div>
+  <div class="neo btn">Exportar</div>
+</div>
+
+<div class="neo btn back" onclick="goBack()">← Atrás</div>
+
+</section>
+
+<!-- LOADING -->
+<section class="view" id="loading">
+
+<h2>Sin conexión al servidor</h2>
+
+<div style="margin-top:40px;">
+  <div class="panel-row">
+    <span class="spinner"></span>
+    <span>Cargando información...</span>
+  </div>
+</div>
+
+<div class="neo btn back" onclick="goBack()">← Atrás</div>
+
+</section>
+
+<script>
+const stack=[];
+
+function showView(id){
+  document.querySelectorAll(".view")
+    .forEach(v=>v.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function openView(id){
+  const current=document.querySelector(".view.active").id;
+  stack.push(current);
+  showView(id);
+}
+
+function goBack(){
+  const prev=stack.pop();
+  if(prev) showView(prev);
+}
+
+function login(){
+  const u=document.getElementById("user").value.toLowerCase();
+  if(u==="ventas"){
+    showView("menuVentas");
+  }
+}
+</script>
 
 </body>
 </html>
