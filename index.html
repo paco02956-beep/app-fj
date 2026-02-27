@@ -258,7 +258,21 @@ function goBack() {
 
 function login() {
   vibrate();
-  showView('home');
+
+  const usuario = document.querySelector("input").value.toLowerCase();
+
+  if (usuario === "control-interno") {
+    window.location.href = "control-interno.html";
+  }
+  else if (usuario === "cliente") {
+    window.location.href = "cliente.html";
+  }
+  else if (usuario === "ventas") {
+    window.location.href = "ventas.html";
+  }
+  else {
+    showView('home'); // fallback visual
+  }
 }
 
 function vibrate() {
