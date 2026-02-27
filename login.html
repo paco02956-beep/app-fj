@@ -1,0 +1,28 @@
+<script>
+
+function login() {
+
+    const usuario = document.getElementById("usuario").value.trim().toUpperCase();
+
+    // ===== USUARIOS PERMITIDOS =====
+    const rutas = {
+        "ADMINISTRACION": "/menu_admin.html",
+        "VENTAS": "/menu_ventas.html",
+        "CONTROL-INTERNO": "/menu_control.html",
+        "CLIENTE": "/menu_cliente.html"
+    };
+
+    if (rutas[usuario]) {
+
+        // guardar usuario solo visual
+        localStorage.setItem("usuario", usuario);
+
+        // redirigir menú correcto
+        window.location.href = rutas[usuario];
+
+    } else {
+        alert("Usuario no autorizado");
+    }
+}
+
+</script>
