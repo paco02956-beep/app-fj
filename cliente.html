@@ -6,136 +6,62 @@
 <title>SYSTEM INNOVATEK</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+body{background:#fff;color:#111;}
+.view{display:none;min-height:100vh;padding:24px;}
+.view.active{display:block;}
+
+.logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.logo img{width:40px;}
+.logo span{font-weight:600;}
+
+.center{display:flex;flex-direction:column;gap:18px;}
+
+.neo{
+background:#fff;
+border-radius:20px;
+padding:18px;
+text-align:center;
+box-shadow:8px 8px 16px rgba(0,0,0,.08),-8px -8px 16px rgba(255,255,255,.9);
 }
 
-body {
-  background: #fff;
-  color: #111;
+.btn{cursor:pointer;}
+input.neo{border:none;outline:none;font-size:16px;text-align:left;padding-left:20px;}
+
+h2{font-size:22px;margin-bottom:10px;}
+
+.module-box{margin-top:20px;color:#555;}
+
+.back{margin-top:30px;width:fit-content;padding:14px 22px;}
+
+.panel-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:12px 0;
 }
 
-.view {
-  display: none;
-  min-height: 100vh;
-  padding: 24px;
+/* RESPIRACIÓN */
+@keyframes respirar{
+0%{transform:scale(1);}
+50%{transform:scale(1.02);}
+100%{transform:scale(1);}
 }
+.breathe{animation:respirar 3.5s ease-in-out infinite;}
 
-.view.active {
-  display: block;
+/* SPINNER */
+.spinner{
+width:18px;
+height:18px;
+border:3px solid #ddd;
+border-top:3px solid #222;
+border-radius:50%;
+display:inline-block;
+animation:spin .8s linear infinite;
 }
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 28px;
+@keyframes spin{
+to{transform:rotate(360deg);}
 }
-
-.logo img {
-  width: 40px;
-}
-
-.logo span {
-  font-weight: 600;
-  letter-spacing: .5px;
-}
-
-.center {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.neo {
-  background: #fff;
-  border-radius: 20px;
-  padding: 18px;
-  text-align: center;
-  box-shadow:
-    8px 8px 16px rgba(0,0,0,0.08),
-   -8px -8px 16px rgba(255,255,255,0.9);
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-
-.neo:active {
-  transform: scale(.97);
-  box-shadow:
-    inset 6px 6px 12px rgba(0,0,0,0.08),
-    inset -6px -6px 12px rgba(255,255,255,0.9);
-}
-
-.btn {
-  cursor: pointer;
-}
-
-input.neo {
-  border: none;
-  outline: none;
-  font-size: 16px;
-  text-align: left;
-  padding-left: 20px;
-}
-
-h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.module-box {
-  margin-top: 20px;
-  color: #555;
-}
-
-.back {
-  margin-top: 40px;
-  width: fit-content;
-  padding: 14px 22px;
-}
-
-/* Panel del Reporte */
-.panel {
-  margin-top: 24px;
-  padding: 20px;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow:
-    8px 8px 16px rgba(0,0,0,0.08),
-   -8px -8px 16px rgba(255,255,255,0.9);
-}
-
-.panel-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 14px 0;
-}
-
-.panel-row span {
-  font-weight: 500;
-}
-
-.small-btn {
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 14px;
-}
-
-  /* ===== RESPIRACIÓN CLIENTE ===== */
-
-@keyframes respirar {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-
-.breathe {
-  animation: respirar 3.5s ease-in-out infinite;
-}
-  
 </style>
 </head>
 
@@ -145,163 +71,92 @@ h2 {
 <section class="view active" id="login">
 <div class="center">
 
-  <div class="logo">
-    <img src="apple-touch-icon.png.jpg">
-    <span>SYSTEM INNOVATEK</span>
-  </div>
+<div class="logo">
+<img src="apple-touch-icon.png.jpg">
+<span>SYSTEM INNOVATEK</span>
+</div>
 
-  <!-- TARJETA CLIENTE -->
-<div class="neo breathe" style="text-align:left; padding:22px;">
-      <div style="font-weight:600; margin-bottom:10px;">
-          ID CLIENTE
-      </div>
+<div class="neo breathe" style="text-align:left;">
+<div style="font-weight:600;margin-bottom:10px;">ID CLIENTE</div>
+<input class="neo" placeholder="Ingrese su ID" style="width:100%;">
+</div>
 
-      <input class="neo"
-             placeholder="Ingrese su ID"
-             style="width:100%; margin-top:6px;">
-  </div>
-
-  <div class="neo btn" onclick="openView('loading')">
-      Continuar
-  </div>
+<div class="neo btn" onclick="openView('loading')">
+Continuar
+</div>
 
 </div>
 </section>
 
-<!-- HOME -->
-<section class="view" id="home">
-  <div class="logo">
-    <img src="apple-touch-icon.png.jpg">
-    <span>SYSTEM INNOVATEK</span>
-  </div>
+<!-- LOADING / PLANTILLA NÓMINA -->
+<section class="view" id="loading">
 
-  <div class="center">
-    <div class="neo btn" onclick="openView('cliente')">CLIENTE</div>
-    <div class="neo btn" onclick="openView('proveedor')">PROVEEDOR</div>
-    <div class="neo btn" onclick="openView('trabajador')">TRABAJADOR</div>
-    <div class="neo btn" onclick="openView('operaciones')">OPERACIONES</div>
-    <div class="neo btn" onclick="openView('facturacion')">FACTURACIÓN</div>
-    <div class="neo btn" onclick="openView('reporte')">REPORTE GENERAL AJUSTADO</div>
-  </div>
-</section>
+<h2>Sin conexión a servidor</h2>
 
-<!-- MÓDULOS SIMPLES -->
-<section class="view" id="cliente">
-  <h2>Cliente</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
+<div class="module-box">
 
-<section class="view" id="proveedor">
-  <h2>Proveedor</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
+<h3>PLANTILLA NÓMINA</h3>
+<hr>
 
-<section class="view" id="trabajador">
-  <h2>Trabajador</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
+<div class="panel-row"><span>Nombre</span><span>__________</span></div>
+<div class="panel-row"><span>Puesto</span><span>__________</span></div>
+<div class="panel-row"><span>Salario</span><span>__________</span></div>
+<div class="panel-row"><span>Periodo</span><span>__________</span></div>
+<div class="panel-row"><span>Días laborados</span><span>__________</span></div>
+<div class="panel-row"><span>Ausencias</span><span>__________</span></div>
+<div class="panel-row"><span>Permisos</span><span>__________</span></div>
 
-<section class="view" id="operaciones">
-  <h2>Operaciones</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
+<hr>
 
-<section class="view" id="facturacion">
-  <h2>Facturación</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
+<div class="panel-row">
+<span>C.S</span>
+<span>%</span>
+<span>Sub.</span>
+</div>
 
-<!-- REPORTE GENERAL AJUSTADO (RESTABLECIDO) -->
-<section class="view" id="reporte">
-  <h2>Reporte General Ajustado</h2>
-  <p style="margin-bottom:16px;color:#555;">
-    Panel preparado para cálculos, desglose e indexación de información.
-  </p>
+<hr>
 
-  <div class="panel">
-    <div class="panel-row">
-      <span>Facturación Total</span>
-      <div class="neo btn small-btn">Desglose por Cliente</div>
-    </div>
+<div class="panel-row">
+<span class="spinner"></span>
+<span>Cargando información...</span>
+</div>
 
-    <div class="panel-row">
-      <span>Gastos Proveedores</span>
-      <div class="neo btn small-btn">Desglose por Proveedor</div>
-    </div>
+<br>
 
-    <div class="panel-row">
-      <span>Sueldos Totales</span>
-      <div class="neo btn small-btn">Desglose por Trabajador</div>
-    </div>
+<div class="panel-row">
+<div class="neo btn">Guardar</div>
+<div class="neo btn">Modificar</div>
+</div>
 
-    <hr style="margin:18px 0;opacity:.2">
+<div class="panel-row">
+<div class="neo btn">Eliminar</div>
+<div class="neo btn">Enviar</div>
+</div>
 
-    <div class="panel-row">
-      <span>Cuotas Patronales</span>
-      <span>—</span>
-    </div>
+<div class="neo btn back" onclick="goBack()">← Atrás</div>
 
-    <div class="panel-row">
-      <span>Retenciones ISR</span>
-      <span>—</span>
-    </div>
-
-    <div class="panel-row">
-      <span>ISN</span>
-      <span>—</span>
-    </div>
-  </div>
-
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
+</div>
 </section>
 
 <script>
-const stack = [];
+const stack=[];
 
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function showView(id){
+document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+document.getElementById(id).classList.add('active');
 }
 
-function openView(id) {
-  vibrate();
-  const current = document.querySelector('.view.active').id;
-  stack.push(current);
-  showView(id);
+function openView(id){
+const current=document.querySelector('.view.active').id;
+stack.push(current);
+showView(id);
 }
 
-function goBack() {
-  vibrate();
-  const prev = stack.pop();
-  if (prev) showView(prev);
-}
-
-function login() {
-  vibrate();
-
-  const usuario = document.querySelector("input").value.toLowerCase();
-
-  if (usuario === "control-interno") {
-    window.location.href = "control-interno.html";
-  }
-  else if (usuario === "cliente") {
-    window.location.href = "cliente.html";
-  }
-  else if (usuario === "ventas") {
-    window.location.href = "ventas.html";
-  }
-  else {
-    showView('home'); // fallback visual
-  }
-}
-
-function vibrate() {
-  if (navigator.vibrate) navigator.vibrate(20);
+function goBack(){
+const prev=stack.pop();
+if(prev)showView(prev);
 }
 </script>
 
+</body>
+</html>
