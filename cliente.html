@@ -123,6 +123,19 @@ h2 {
   border-radius: 14px;
   font-size: 14px;
 }
+
+  /* ===== RESPIRACIÓN CLIENTE ===== */
+
+@keyframes respirar {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.breathe {
+  animation: respirar 3.5s ease-in-out infinite;
+}
+  
 </style>
 </head>
 
@@ -138,7 +151,7 @@ h2 {
   </div>
 
   <!-- TARJETA CLIENTE -->
-  <div class="neo" style="text-align:left; padding:22px;">
+<div class="neo breathe" style="text-align:left; padding:22px;">
       <div style="font-weight:600; margin-bottom:10px;">
           ID CLIENTE
       </div>
