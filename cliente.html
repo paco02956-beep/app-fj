@@ -130,17 +130,29 @@ h2 {
 
 <!-- LOGIN -->
 <section class="view active" id="login">
-  <div class="center">
-    <div class="logo">
-      <img src="apple-touch-icon.png.jpg">
-      <span>SYSTEM INNOVATEK</span>
-    </div>
+<div class="center">
 
-    <input class="neo" placeholder="Administración">
-    <input class="neo" type="password" placeholder="••••••••">
-
-    <div class="neo btn" onclick="login()">Login</div>
+  <div class="logo">
+    <img src="apple-touch-icon.png.jpg">
+    <span>SYSTEM INNOVATEK</span>
   </div>
+
+  <!-- TARJETA CLIENTE -->
+  <div class="neo" style="text-align:left; padding:22px;">
+      <div style="font-weight:600; margin-bottom:10px;">
+          ID CLIENTE
+      </div>
+
+      <input class="neo"
+             placeholder="Ingrese su ID"
+             style="width:100%; margin-top:6px;">
+  </div>
+
+  <div class="neo btn" onclick="openView('loading')">
+      Continuar
+  </div>
+
+</div>
 </section>
 
 <!-- HOME -->
