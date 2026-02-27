@@ -82,7 +82,9 @@ to{transform:rotate(360deg);}
 <div class="neo btn" onclick="openView('loading')">
 Continuar
 </div>
-
+<div class="neo btn" onclick="salir()" style="margin-top:10px;">
+Salir
+</div>
 </div>
 </section>
 
@@ -154,6 +156,10 @@ function goBack(){
 const prev=stack.pop();
 if(prev)showView(prev);
 }
+function salir(){
+  window.location.href = "login.html";
+}
+  
 </script>
 
 </body>
