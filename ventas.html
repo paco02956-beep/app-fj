@@ -60,20 +60,12 @@ body{
   width:fit-content;
 }
 
-input.neo{
-  border:none;
-  outline:none;
-  text-align:left;
-  padding-left:14px;
-}
-
 .panel-row{
   display:flex;
   justify-content:space-between;
   margin:10px 0;
 }
 
-/* spinner */
 .spinner{
   width:18px;
   height:18px;
@@ -92,23 +84,6 @@ input.neo{
 
 <body>
 
-<!-- LOGIN -->
-<section class="view" id="login">
-<div class="center">
-
-  <div class="logo">
-    <img src="apple-touch-icon.png.jpg">
-    <span>SYSTEM INNOVATEK — VENTAS</span>
-  </div>
-
-  <input class="neo" id="user" placeholder="Usuario">
-  <input class="neo" type="password" placeholder="••••••">
-
-  <div class="neo btn" onclick="login()">Login</div>
-
-</div>
-</section>
-
 <!-- MENU VENTAS -->
 <section class="view active" id="menuVentas">
 
@@ -123,9 +98,9 @@ input.neo{
   <div class="neo btn" onclick="openView('loading')">RU</div>
   <div class="neo btn" onclick="openView('loading')">S/CF</div>
 
+  <div class="neo btn" onclick="salir()">SALIR</div>
+
 </div>
-
-
 
 </section>
 
@@ -204,11 +179,8 @@ function goBack(){
   if(prev) showView(prev);
 }
 
-function login(){
-  const u=document.getElementById("user").value.toLowerCase();
-  if(u==="ventas"){
-    showView("menuVentas");
-  }
+function salir(){
+  window.location.href="login.html";
 }
 </script>
 
