@@ -3,280 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SYSTEM INNOVATEK</title>
+<title>SYSTEM INNOVATEK - VENTAS</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-body {
-  background: #fff;
-  color: #111;
+body{
+  background:#fff;
+  color:#111;
 }
 
-.view {
-  display: none;
-  min-height: 100vh;
-  padding: 24px;
+.view{
+  min-height:100vh;
+  padding:24px;
 }
 
-.view.active {
-  display: block;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:28px;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 28px;
+.logo img{ width:40px; }
+
+.center{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
 }
 
-.logo img {
-  width: 40px;
-}
-
-.logo span {
-  font-weight: 600;
-  letter-spacing: .5px;
-}
-
-.center {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.neo {
-  background: #fff;
-  border-radius: 20px;
-  padding: 18px;
-  text-align: center;
+.neo{
+  background:#fff;
+  border-radius:20px;
+  padding:18px;
+  text-align:center;
   box-shadow:
-    8px 8px 16px rgba(0,0,0,0.08),
-   -8px -8px 16px rgba(255,255,255,0.9);
-  transition: transform .15s ease, box-shadow .15s ease;
+    8px 8px 16px rgba(0,0,0,.08),
+   -8px -8px 16px rgba(255,255,255,.9);
 }
 
-.neo:active {
-  transform: scale(.97);
+.btn{ cursor:pointer; }
+
+.module-box{
+  margin-top:20px;
+  color:#555;
+}
+
+.panel-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:14px 0;
+}
+
+.back{
+  margin-top:25px;
+  width:fit-content;
+  padding:14px 22px;
+}
+
+/* ===== SPINNER ===== */
+.spinner{
+  width:16px;
+  height:16px;
+  border:3px solid #ccc;
+  border-top:3px solid #111;
+  border-radius:50%;
+  display:inline-block;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  0%{ transform:rotate(0deg); }
+  100%{ transform:rotate(360deg); }
+}
+
+button{
+  border:none;
+  padding:10px 16px;
+  border-radius:12px;
+  background:#fff;
   box-shadow:
-    inset 6px 6px 12px rgba(0,0,0,0.08),
-    inset -6px -6px 12px rgba(255,255,255,0.9);
-}
-
-.btn {
-  cursor: pointer;
-}
-
-input.neo {
-  border: none;
-  outline: none;
-  font-size: 16px;
-  text-align: left;
-  padding-left: 20px;
-}
-
-h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.module-box {
-  margin-top: 20px;
-  color: #555;
-}
-
-.back {
-  margin-top: 40px;
-  width: fit-content;
-  padding: 14px 22px;
-}
-
-/* Panel del Reporte */
-.panel {
-  margin-top: 24px;
-  padding: 20px;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow:
-    8px 8px 16px rgba(0,0,0,0.08),
-   -8px -8px 16px rgba(255,255,255,0.9);
-}
-
-.panel-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 14px 0;
-}
-
-.panel-row span {
-  font-weight: 500;
-}
-
-.small-btn {
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 14px;
+    6px 6px 12px rgba(0,0,0,.08),
+   -6px -6px 12px rgba(255,255,255,.9);
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<section class="view active" id="login">
-  <div class="center">
-    <div class="logo">
-      <img src="apple-touch-icon.png.jpg">
-      <span>SYSTEM INNOVATEK</span>
-    </div>
+<section class="view">
 
-    <input class="neo" placeholder="Administración">
-    <input class="neo" type="password" placeholder="••••••••">
+<div class="logo">
+  <img src="apple-touch-icon.png.jpg">
+  <span>SYSTEM INNOVATEK — VENTAS</span>
+</div>
 
-    <div class="neo btn" onclick="login()">Login</div>
-  </div>
+<div class="module-box">
+
+<h3>PANEL VENTAS</h3>
+<hr>
+
+<div class="panel-row"><span>Cliente</span><span>__________</span></div>
+<div class="panel-row"><span>Producto</span><span>__________</span></div>
+<div class="panel-row"><span>Cantidad</span><span>__________</span></div>
+<div class="panel-row"><span>Precio</span><span>__________</span></div>
+<div class="panel-row"><span>Total</span><span>__________</span></div>
+
+<hr>
+
+<div class="panel-row">
+  <span style="color:#0a58ff;">●</span>
+  <span>Sin conexión al servidor</span>
+</div>
+
+<div class="panel-row">
+  <span class="spinner"></span>
+  <span>Cargando información...</span>
+</div>
+
+<br>
+
+<div class="panel-row">
+  <button>Guardar</button>
+  <button>Modificar</button>
+</div>
+
+<div class="panel-row">
+  <button>Eliminar</button>
+  <button>Enviar</button>
+</div>
+
+<div class="neo btn back" onclick="history.back()">← Atrás</div>
+
+</div>
+
 </section>
 
-<!-- HOME -->
-<section class="view" id="home">
-  <div class="logo">
-    <img src="apple-touch-icon.png.jpg">
-    <span>SYSTEM INNOVATEK</span>
-  </div>
-
-  <div class="center">
-    <div class="neo btn" onclick="openView('cliente')">CLIENTE</div>
-    <div class="neo btn" onclick="openView('proveedor')">PROVEEDOR</div>
-    <div class="neo btn" onclick="openView('trabajador')">TRABAJADOR</div>
-    <div class="neo btn" onclick="openView('operaciones')">OPERACIONES</div>
-    <div class="neo btn" onclick="openView('facturacion')">FACTURACIÓN</div>
-    <div class="neo btn" onclick="openView('reporte')">REPORTE GENERAL AJUSTADO</div>
-  </div>
-</section>
-
-<!-- MÓDULOS SIMPLES -->
-<section class="view" id="cliente">
-  <h2>Cliente</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<section class="view" id="proveedor">
-  <h2>Proveedor</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<section class="view" id="trabajador">
-  <h2>Trabajador</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<section class="view" id="operaciones">
-  <h2>Operaciones</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<section class="view" id="facturacion">
-  <h2>Facturación</h2>
-  <div class="module-box">Conectividad con DATA</div>
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<!-- REPORTE GENERAL AJUSTADO (RESTABLECIDO) -->
-<section class="view" id="reporte">
-  <h2>Reporte General Ajustado</h2>
-  <p style="margin-bottom:16px;color:#555;">
-    Panel preparado para cálculos, desglose e indexación de información.
-  </p>
-
-  <div class="panel">
-    <div class="panel-row">
-      <span>Facturación Total</span>
-      <div class="neo btn small-btn">Desglose por Cliente</div>
-    </div>
-
-    <div class="panel-row">
-      <span>Gastos Proveedores</span>
-      <div class="neo btn small-btn">Desglose por Proveedor</div>
-    </div>
-
-    <div class="panel-row">
-      <span>Sueldos Totales</span>
-      <div class="neo btn small-btn">Desglose por Trabajador</div>
-    </div>
-
-    <hr style="margin:18px 0;opacity:.2">
-
-    <div class="panel-row">
-      <span>Cuotas Patronales</span>
-      <span>—</span>
-    </div>
-
-    <div class="panel-row">
-      <span>Retenciones ISR</span>
-      <span>—</span>
-    </div>
-
-    <div class="panel-row">
-      <span>ISN</span>
-      <span>—</span>
-    </div>
-  </div>
-
-  <div class="neo btn back" onclick="goBack()">← Volver</div>
-</section>
-
-<script>
-const stack = [];
-
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-function openView(id) {
-  vibrate();
-  const current = document.querySelector('.view.active').id;
-  stack.push(current);
-  showView(id);
-}
-
-function goBack() {
-  vibrate();
-  const prev = stack.pop();
-  if (prev) showView(prev);
-}
-
-function login() {
-  vibrate();
-
-  const usuario = document.querySelector("input").value.toLowerCase();
-
-  if (usuario === "control-interno") {
-    window.location.href = "control-interno.html";
-  }
-  else if (usuario === "cliente") {
-    window.location.href = "cliente.html";
-  }
-  else if (usuario === "ventas") {
-    window.location.href = "ventas.html";
-  }
-  else {
-    showView('home'); // fallback visual
-  }
-}
-
-function vibrate() {
-  if (navigator.vibrate) navigator.vibrate(20);
-}
-</script>
-
+</body>
+</html>
